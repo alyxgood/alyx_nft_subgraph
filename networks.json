@@ -1,0 +1,13 @@
+{
+  "mumbai": {
+    "LYNKNFT": {
+      "address": "0x3fF1bc7091A79259014c9589CCefAcbfA59B2E1A"
+    },
+    "Market": {
+      "address": "0xad404e9d87E759F4d5FCB1B392F9257D4DAC0673"
+    },
+    "User": {
+      "address": "0x18354423Ee62573a9B3fF0AFC63974Acb1d3f631"
+    }
+  }
+}

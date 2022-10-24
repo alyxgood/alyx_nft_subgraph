@@ -1,0 +1,220 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "dbAddress", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "UserInitialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum IUser.Level",
+        "name": "level",
+        "type": "uint8"
+      }
+    ],
+    "name": "LevelUp",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "BLACK_HOLE",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DB_CONTRACT",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "__User_init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "__User_init_unchained",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "__baseContract_init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" }
+    ],
+    "name": "auditLevel",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" },
+      { "internalType": "uint256[]", "name": "_nftIds", "type": "uint256[]" }
+    ],
+    "name": "calcAchievementReward",
+    "outputs": [
+      { "internalType": "bool[]", "name": "", "type": "bool[]" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_nftIds", "type": "uint256[]" }
+    ],
+    "name": "claimAchievementReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" },
+      { "internalType": "uint256", "name": "_rewardAmount", "type": "uint256" }
+    ],
+    "name": "hookByClaimReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "nftId", "type": "uint256" }
+    ],
+    "name": "hookByStake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "nftId", "type": "uint256" }
+    ],
+    "name": "hookByUnStake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" },
+      { "internalType": "uint256", "name": "_performance", "type": "uint256" }
+    ],
+    "name": "hookByUpgrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" }
+    ],
+    "name": "isValidUser",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" }
+    ],
+    "name": "levelUpAble",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_userAddr", "type": "address" },
+      { "internalType": "enum IUser.Level", "name": "_level", "type": "uint8" }
+    ],
+    "name": "refCounterOf",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_refAddr", "type": "address" }
+    ],
+    "name": "register",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "stakeNFTs",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "lastUpdateTime",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "stakedDuration", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "userInfoOf",
+    "outputs": [
+      { "internalType": "enum IUser.Level", "name": "level", "type": "uint8" },
+      { "internalType": "address", "name": "refAddress", "type": "address" },
+      { "internalType": "uint256", "name": "stakeRev", "type": "uint256" },
+      { "internalType": "uint256", "name": "socialRev", "type": "uint256" },
+      { "internalType": "uint256", "name": "communityRev", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "contributionRev",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "achievementRev",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "performance", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
