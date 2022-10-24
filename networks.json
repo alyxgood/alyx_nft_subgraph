@@ -8,6 +8,9 @@
     },
     "User": {
       "address": "0x18354423Ee62573a9B3fF0AFC63974Acb1d3f631"
+    },
+    "DBContract": {
+      "address": "0x3079EAF421AE4AeCeec0Cf5d2D331eEb8D05E339"
     }
   }
 }

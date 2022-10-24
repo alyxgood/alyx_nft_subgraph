@@ -83,3 +83,25 @@ dataSources:
         - event: LevelUp(indexed address,uint8)
           handler: handleLevelUp
       file: ./src/user.ts
+  - kind: ethereum
+    name: DBContract
+    network: mumbai
+    source:
+      address: "0x3079EAF421AE4AeCeec0Cf5d2D331eEb8D05E339"
+      abi: DBContract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - DBContractInitialized
+        - OwnershipTransferred
+      abis:
+        - name: DBContract
+          file: ./abis/DBContract.json
+      eventHandlers:
+        - event: DBContractInitialized(uint8)
+          handler: handleDBContractInitialized
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/db-contract.ts
