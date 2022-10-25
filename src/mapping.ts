@@ -81,10 +81,10 @@ export function handleTransfer(event: Transfer): void {
 
     const lynknft = LYNKNFT.bind(event.address)
     const info = lynknft.nftInfoOf(event.params.tokenId)
-    entity.charisma = info[0].toU64()
-    entity.vitality = info[1].toU64()
-    entity.intellect = info[2].toU64()
-    entity.dexterity = info[3].toU64()
+    entity.charisma = info[0].toI32()
+    entity.vitality = info[1].toI32()
+    entity.intellect = info[2].toI32()
+    entity.dexterity = info[3].toI32()
   }
   if (event.params.to.toHex().toLowerCase() === STAKING_LYNKNFT.toLowerCase()) {
     entity.isStaking = true
@@ -112,17 +112,17 @@ export function handleUpgrade(event: Upgrade): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entity) {
     if (event.params.attr == 0)
-      entity.charisma += event.params.point.toU64()
+      entity.charisma += event.params.point.toI32()
     else if (event.params.attr == 1)
-      entity.vitality += event.params.point.toU64()
+      entity.vitality += event.params.point.toI32()
     else if (event.params.attr == 2)
-      entity.intellect += event.params.point.toU64()
+      entity.intellect += event.params.point.toI32()
     else if (event.params.attr == 3)
-      entity.dexterity += event.params.point.toU64()
+      entity.dexterity += event.params.point.toI32()
 
     const dbContract = DBContract.bind(Address.fromString(DB_CONTRACT))
     const level = dbContract.calcTokenLevel(event.params.tokenId)
-    entity.level = level.toU64()
+    entity.level = level.toI32()
 
     entity.save()
   }
