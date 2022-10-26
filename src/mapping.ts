@@ -78,29 +78,14 @@ export function handleTransfer(event: Transfer): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (!entity || event.params.from.toHex() === Address.zero().toHex()) {
     entity = new LYNKNFTEntity(event.params.tokenId.toString())
-
-    const lynknft = LYNKNFT.bind(event.address)
-    const info = lynknft.nftInfoOf(event.params.tokenId)
-    entity.charisma = info[0].toI32()
-    entity.vitality = info[1].toI32()
-    entity.intellect = info[2].toI32()
-    entity.dexterity = info[3].toI32()
+    entity.charisma = 0
   }
   if (event.params.to.toHex().toLowerCase() === STAKING_LYNKNFT.toLowerCase()) {
     entity.isStaking = true
   } else if (event.params.to.toHex().toLowerCase() === LISTING_LYNKNFT.toLowerCase()) {
-    const marketContract = Market.bind(Address.fromString(MARKET_CONTRACT))
-    const listIndex = marketContract.listIndexByTokenId(event.params.tokenId)
-    const listInfo = marketContract.listNFTs(event.params.tokenId)
     entity.isList = true
-    entity.listIndex = listIndex
-    entity.acceptToken = listInfo.value2
-    entity.priceInAcceptToken = listInfo.value3
   } else {
     entity.isList = false
-    entity.listIndex = BigInt.zero()
-    entity.acceptToken = Address.zero()
-    entity.priceInAcceptToken = BigInt.zero()
     entity.isStaking = false
     entity.owner = event.params.to
   }
@@ -113,16 +98,6 @@ export function handleUpgrade(event: Upgrade): void {
   if (entity) {
     if (event.params.attr == 0)
       entity.charisma += event.params.point.toI32()
-    else if (event.params.attr == 1)
-      entity.vitality += event.params.point.toI32()
-    else if (event.params.attr == 2)
-      entity.intellect += event.params.point.toI32()
-    else if (event.params.attr == 3)
-      entity.dexterity += event.params.point.toI32()
-
-    const dbContract = DBContract.bind(Address.fromString(DB_CONTRACT))
-    const level = dbContract.calcTokenLevel(event.params.tokenId)
-    entity.level = level.toI32()
 
     entity.save()
   }

@@ -2,15 +2,8 @@ type LYNKNFTEntity @entity {
   id: ID!
   owner: Bytes! # address
   isList: Boolean!
-  listIndex: BigInt! # uint256
-  acceptToken: Bytes! # address
-  priceInAcceptToken: BigInt! # uint256
   isStaking: Boolean!
-  level: Int! # uint8
   charisma: Int!
-  dexterity: Int!
-  vitality: Int!
-  intellect: Int!
 }
 
 type UserEntity @entity {

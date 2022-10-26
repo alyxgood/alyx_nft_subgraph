@@ -18,15 +18,8 @@ export class LYNKNFTEntity extends Entity {
 
     this.set("owner", Value.fromBytes(Bytes.empty()));
     this.set("isList", Value.fromBoolean(false));
-    this.set("listIndex", Value.fromBigInt(BigInt.zero()));
-    this.set("acceptToken", Value.fromBytes(Bytes.empty()));
-    this.set("priceInAcceptToken", Value.fromBigInt(BigInt.zero()));
     this.set("isStaking", Value.fromBoolean(false));
-    this.set("level", Value.fromI32(0));
     this.set("charisma", Value.fromI32(0));
-    this.set("dexterity", Value.fromI32(0));
-    this.set("vitality", Value.fromI32(0));
-    this.set("intellect", Value.fromI32(0));
   }
 
   save(): void {
@@ -72,33 +65,6 @@ export class LYNKNFTEntity extends Entity {
     this.set("isList", Value.fromBoolean(value));
   }
 
-  get listIndex(): BigInt {
-    let value = this.get("listIndex");
-    return value!.toBigInt();
-  }
-
-  set listIndex(value: BigInt) {
-    this.set("listIndex", Value.fromBigInt(value));
-  }
-
-  get acceptToken(): Bytes {
-    let value = this.get("acceptToken");
-    return value!.toBytes();
-  }
-
-  set acceptToken(value: Bytes) {
-    this.set("acceptToken", Value.fromBytes(value));
-  }
-
-  get priceInAcceptToken(): BigInt {
-    let value = this.get("priceInAcceptToken");
-    return value!.toBigInt();
-  }
-
-  set priceInAcceptToken(value: BigInt) {
-    this.set("priceInAcceptToken", Value.fromBigInt(value));
-  }
-
   get isStaking(): boolean {
     let value = this.get("isStaking");
     return value!.toBoolean();
@@ -108,15 +74,6 @@ export class LYNKNFTEntity extends Entity {
     this.set("isStaking", Value.fromBoolean(value));
   }
 
-  get level(): i32 {
-    let value = this.get("level");
-    return value!.toI32();
-  }
-
-  set level(value: i32) {
-    this.set("level", Value.fromI32(value));
-  }
-
   get charisma(): i32 {
     let value = this.get("charisma");
     return value!.toI32();
@@ -124,33 +81,6 @@ export class LYNKNFTEntity extends Entity {
 
   set charisma(value: i32) {
     this.set("charisma", Value.fromI32(value));
-  }
-
-  get dexterity(): i32 {
-    let value = this.get("dexterity");
-    return value!.toI32();
-  }
-
-  set dexterity(value: i32) {
-    this.set("dexterity", Value.fromI32(value));
-  }
-
-  get vitality(): i32 {
-    let value = this.get("vitality");
-    return value!.toI32();
-  }
-
-  set vitality(value: i32) {
-    this.set("vitality", Value.fromI32(value));
-  }
-
-  get intellect(): i32 {
-    let value = this.get("intellect");
-    return value!.toI32();
-  }
-
-  set intellect(value: i32) {
-    this.set("intellect", Value.fromI32(value));
   }
 }
 
