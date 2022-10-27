@@ -5,7 +5,8 @@ import {
   ApprovalForAll,
   Initialized,
   Transfer,
-  Upgrade
+  Upgrade,
+  Mint
 } from "../generated/LYNKNFT/LYNKNFT"
 import { LYNKNFTEntity } from "../generated/schema"
 import {DBContract} from "../generated/DBContract/DBContract";
@@ -78,7 +79,6 @@ export function handleTransfer(event: Transfer): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (!entity || event.params.from.toHex() === Address.zero().toHex()) {
     entity = new LYNKNFTEntity(event.params.tokenId.toString())
-    entity.charisma = 0
   }
   if (
       event.params.to.toHex().toLowerCase().indexOf(STAKING_LYNKNFT.toLowerCase().substring(2)) >= 0 ||
@@ -104,6 +104,19 @@ export function handleUpgrade(event: Upgrade): void {
   if (entity) {
     if (event.params.attr == 0)
       entity.charisma += event.params.point.toI32()
+
+    entity.save()
+  }
+}
+
+export function handleMint(event: Mint): void {
+  let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
+  if (entity) {
+    entity.charisma = event.params.nftInfo[0].toI32()
+    entity.vitality = event.params.nftInfo[1].toI32()
+    entity.intellect = event.params.nftInfo[2].toI32()
+    entity.dexterity = event.params.nftInfo[3].toI32()
+    entity.name = event.params.name
 
     entity.save()
   }

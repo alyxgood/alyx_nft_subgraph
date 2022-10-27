@@ -1,16 +1,16 @@
 {
   "mumbai": {
-    "LYNKNFT": {
-      "address": "0x091930c7949816b6EcB557B54c9d5175a5063520"
-    },
     "Market": {
-      "address": "0x1dA874E79ac69645D824a26635F3dA20B46a54f2"
+      "address": "0x806d575FA868cAf2dd4541EF1317E87F9C4e74e5"
     },
     "User": {
-      "address": "0xC9a19Bea912B06bBf383bc0DCA642b851204b1b0"
+      "address": "0x1e98f5D4a493549EB4dEe14c49d097879BdA7814"
     },
     "DBContract": {
-      "address": "0x36D562000a11476A78105D4f72A50Dc572927678"
+      "address": "0xf32d09a7cA8B7a7E9016E308fa288d7f012F7C8f"
+    },
+    "LYNKNFT": {
+      "address": "0x86679de94D6F9e064B5001187bbB351bA30E5cd3"
     }
   }
 }

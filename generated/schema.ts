@@ -20,6 +20,10 @@ export class LYNKNFTEntity extends Entity {
     this.set("isList", Value.fromBoolean(false));
     this.set("isStaking", Value.fromBoolean(false));
     this.set("charisma", Value.fromI32(0));
+    this.set("vitality", Value.fromI32(0));
+    this.set("intellect", Value.fromI32(0));
+    this.set("dexterity", Value.fromI32(0));
+    this.set("name", Value.fromString(""));
   }
 
   save(): void {
@@ -81,6 +85,42 @@ export class LYNKNFTEntity extends Entity {
 
   set charisma(value: i32) {
     this.set("charisma", Value.fromI32(value));
+  }
+
+  get vitality(): i32 {
+    let value = this.get("vitality");
+    return value!.toI32();
+  }
+
+  set vitality(value: i32) {
+    this.set("vitality", Value.fromI32(value));
+  }
+
+  get intellect(): i32 {
+    let value = this.get("intellect");
+    return value!.toI32();
+  }
+
+  set intellect(value: i32) {
+    this.set("intellect", Value.fromI32(value));
+  }
+
+  get dexterity(): i32 {
+    let value = this.get("dexterity");
+    return value!.toI32();
+  }
+
+  set dexterity(value: i32) {
+    this.set("dexterity", Value.fromI32(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 }
 

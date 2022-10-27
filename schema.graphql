@@ -4,6 +4,10 @@ type LYNKNFTEntity @entity {
   isList: Boolean!
   isStaking: Boolean!
   charisma: Int!
+  vitality: Int!
+  intellect: Int!
+  dexterity: Int!
+  name: String!
 }
 
 type UserEntity @entity {

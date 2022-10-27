@@ -3,42 +3,10 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: LYNKNFT
-    network: mumbai
-    source:
-      address: "0x091930c7949816b6EcB557B54c9d5175a5063520"
-      abi: LYNKNFT
-      startBlock: 28795875
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      entities:
-        - Approval
-        - ApprovalForAll
-        - Initialized
-        - Transfer
-        - Upgrade
-      abis:
-        - name: LYNKNFT
-          file: ./abis/LYNKNFT.json
-      eventHandlers:
-        - event: Approval(indexed address,indexed address,indexed uint256)
-          handler: handleApproval
-        - event: ApprovalForAll(indexed address,indexed address,bool)
-          handler: handleApprovalForAll
-        - event: Initialized(uint8)
-          handler: handleInitialized
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: Upgrade(indexed uint256,uint8,uint256)
-          handler: handleUpgrade
-      file: ./src/mapping.ts
-  - kind: ethereum
     name: Market
     network: mumbai
     source:
-      address: "0x1dA874E79ac69645D824a26635F3dA20B46a54f2"
+      address: "0x806d575FA868cAf2dd4541EF1317E87F9C4e74e5"
       abi: Market
       startBlock: 28795893
     mapping:
@@ -67,7 +35,7 @@ dataSources:
     name: User
     network: mumbai
     source:
-      address: "0xC9a19Bea912B06bBf383bc0DCA642b851204b1b0"
+      address: "0x1e98f5D4a493549EB4dEe14c49d097879BdA7814"
       abi: User
       startBlock: 28795885
     mapping:
@@ -90,7 +58,7 @@ dataSources:
     name: DBContract
     network: mumbai
     source:
-      address: "0x36D562000a11476A78105D4f72A50Dc572927678"
+      address: "0xf32d09a7cA8B7a7E9016E308fa288d7f012F7C8f"
       abi: DBContract
       startBlock: 28795864
     mapping:
@@ -109,3 +77,46 @@ dataSources:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
       file: ./src/db-contract.ts
+  - kind: ethereum
+    name: LYNKNFT
+    network: mumbai
+    source:
+      address: "0x86679de94D6F9e064B5001187bbB351bA30E5cd3"
+      abi: LYNKNFT
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+        - Approval
+        - ApprovalForAll
+        - Initialized
+        - Mint
+        - Transfer
+        - Upgrade
+      abis:
+        - name: LYNKNFT
+          file: ./abis/LYNKNFT.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: Mint(indexed uint256,uint256[],string)
+          handler: handleMint
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: Upgrade(indexed uint256,uint8,uint256)
+          handler: handleUpgrade
+      file: ./src/lynknft.ts
