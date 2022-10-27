@@ -104,6 +104,12 @@ export function handleUpgrade(event: Upgrade): void {
   if (entity) {
     if (event.params.attr == 0)
       entity.charisma += event.params.point.toI32()
+    else if (event.params.attr == 1)
+      entity.vitality += event.params.point.toI32()
+    else if (event.params.attr == 2)
+      entity.intellect += event.params.point.toI32()
+    else if (event.params.attr == 3)
+      entity.dexterity += event.params.point.toI32()
 
     entity.save()
   }
