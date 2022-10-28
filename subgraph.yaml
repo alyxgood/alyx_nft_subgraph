@@ -83,6 +83,7 @@ dataSources:
     source:
       address: "0x86679de94D6F9e064B5001187bbB351bA30E5cd3"
       abi: LYNKNFT
+      startBlock: 28795864
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
