@@ -1,4 +1,4 @@
-specVersion: 0.0.2
+specVersion: 0.0.4
 schema:
   file: ./schema.graphql
 dataSources:
@@ -11,7 +11,7 @@ dataSources:
       startBlock: 28795893
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Cancel
@@ -40,7 +40,7 @@ dataSources:
       startBlock: 28795885
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - UserInitialized
@@ -63,7 +63,7 @@ dataSources:
       startBlock: 28795864
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - DBContractInitialized
@@ -86,7 +86,7 @@ dataSources:
       startBlock: 28795864
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AdminChanged
@@ -102,12 +102,6 @@ dataSources:
         - name: LYNKNFT
           file: ./abis/LYNKNFT.json
       eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: BeaconUpgraded(indexed address)
-          handler: handleBeaconUpgraded
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
         - event: Approval(indexed address,indexed address,indexed uint256)
           handler: handleApproval
         - event: ApprovalForAll(indexed address,indexed address,bool)
