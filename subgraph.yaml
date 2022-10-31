@@ -4,7 +4,7 @@ schema:
 dataSources:
   - kind: ethereum
     name: Market
-    network: mumbai
+    network: alyx
     source:
       address: "0x4A6634e6218B4b27baEF6A0c68cF077C4b92121A"
       abi: Market
@@ -33,7 +33,7 @@ dataSources:
       file: ./src/market.ts
   - kind: ethereum
     name: User
-    network: mumbai
+    network: alyx
     source:
       address: "0x7A6Ed86545d8fAFEfF25fF22470dd0cBb8DF7c63"
       abi: User
@@ -56,7 +56,7 @@ dataSources:
       file: ./src/user.ts
   - kind: ethereum
     name: DBContract
-    network: mumbai
+    network: alyx
     source:
       address: "0x4023A2776c1CE7d174Ee3BDfa639C74faD47393F"
       abi: DBContract
@@ -79,7 +79,7 @@ dataSources:
       file: ./src/db-contract.ts
   - kind: ethereum
     name: LYNKNFT
-    network: mumbai
+    network: alyx
     source:
       address: "0x779927B8c02d5cB6C90C1EBD2F714EF4092C8b0e"
       abi: LYNKNFT
