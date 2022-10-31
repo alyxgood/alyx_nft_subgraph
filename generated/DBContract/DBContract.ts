@@ -65,6 +65,14 @@ export class DBContract__calcLevelResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
+
+  getLevel(): BigInt {
+    return this.value0;
+  }
+
+  getOverflow(): BigInt {
+    return this.value1;
+  }
 }
 
 export class DBContract extends ethereum.SmartContract {

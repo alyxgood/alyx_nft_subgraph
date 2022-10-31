@@ -231,6 +231,14 @@ export class LYNKNFT__mintInfoOfResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
+
+  getLastMintTime(): BigInt {
+    return this.value0;
+  }
+
+  getMintNumInDuration(): BigInt {
+    return this.value1;
+  }
 }
 
 export class LYNKNFT extends ethereum.SmartContract {

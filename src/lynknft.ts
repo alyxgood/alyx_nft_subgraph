@@ -8,7 +8,7 @@ import {
   Upgrade,
   Mint
 } from "../generated/LYNKNFT/LYNKNFT"
-import { LYNKNFTEntity } from "../generated/schema"
+import {LYNKNFTEntity, MintLogEntity} from "../generated/schema"
 import {DBContract} from "../generated/DBContract/DBContract";
 import {DB_CONTRACT, LISTING_LYNKNFT, MARKET_CONTRACT, STAKING_CONTRACT, STAKING_LYNKNFT} from "../constants/constants";
 import {Market} from "../generated/Market/Market";
@@ -79,6 +79,11 @@ export function handleTransfer(event: Transfer): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (!entity || event.params.from.toHex() === Address.zero().toHex()) {
     entity = new LYNKNFTEntity(event.params.tokenId.toString())
+    entity.charisma = 0
+    entity.vitality = 0
+    entity.intellect = 0
+    entity.dexterity = 0
+    entity.name = ''
   }
   if (
       event.params.to.toHex().toLowerCase().indexOf(STAKING_LYNKNFT.toLowerCase().substring(2)) >= 0 ||
@@ -125,5 +130,15 @@ export function handleMint(event: Mint): void {
     entity.name = event.params.name
 
     entity.save()
+  }
+
+  let logEntity = MintLogEntity.load(event.params.tokenId.toString())
+  if (!logEntity) {
+    logEntity = new MintLogEntity(event.params.tokenId.toString())
+    logEntity.eventTime = event.block.timestamp.toI32()
+    logEntity.num = 1
+    logEntity.tx = event.transaction.hash
+
+    logEntity.save()
   }
 }

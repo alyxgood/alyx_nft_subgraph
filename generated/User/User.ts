@@ -65,6 +65,14 @@ export class User__calcAchievementRewardResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
+
+  getValue0(): Array<boolean> {
+    return this.value0;
+  }
+
+  getValue1(): BigInt {
+    return this.value1;
+  }
 }
 
 export class User__stakeNFTsResult {
@@ -81,6 +89,14 @@ export class User__stakeNFTsResult {
     map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
+  }
+
+  getLastUpdateTime(): BigInt {
+    return this.value0;
+  }
+
+  getStakedDuration(): BigInt {
+    return this.value1;
   }
 }
 
@@ -128,6 +144,38 @@ export class User__userInfoOfResult {
     map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
     map.set("value7", ethereum.Value.fromUnsignedBigInt(this.value7));
     return map;
+  }
+
+  getLevel(): i32 {
+    return this.value0;
+  }
+
+  getRefAddress(): Address {
+    return this.value1;
+  }
+
+  getStakeRev(): BigInt {
+    return this.value2;
+  }
+
+  getSocialRev(): BigInt {
+    return this.value3;
+  }
+
+  getCommunityRev(): BigInt {
+    return this.value4;
+  }
+
+  getContributionRev(): BigInt {
+    return this.value5;
+  }
+
+  getAchievementRev(): BigInt {
+    return this.value6;
+  }
+
+  getPerformance(): BigInt {
+    return this.value7;
   }
 }
 

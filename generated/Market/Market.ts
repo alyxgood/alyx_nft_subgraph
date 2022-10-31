@@ -136,6 +136,22 @@ export class Market__listNFTsResult {
     map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
     return map;
   }
+
+  getSeller(): Address {
+    return this.value0;
+  }
+
+  getTokenId(): BigInt {
+    return this.value1;
+  }
+
+  getAcceptToken(): Address {
+    return this.value2;
+  }
+
+  getPriceInAcceptToken(): BigInt {
+    return this.value3;
+  }
 }
 
 export class Market extends ethereum.SmartContract {

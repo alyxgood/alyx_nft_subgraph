@@ -10,6 +10,13 @@ type LYNKNFTEntity @entity {
   name: String!
 }
 
+type MintLogEntity @entity {
+  id: ID!
+  eventTime: Int!
+  num: Int!
+  tx: Bytes!
+}
+
 type UserEntity @entity {
   id: ID!
   level: Int! # uint8

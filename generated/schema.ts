@@ -15,15 +15,6 @@ export class LYNKNFTEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("owner", Value.fromBytes(Bytes.empty()));
-    this.set("isList", Value.fromBoolean(false));
-    this.set("isStaking", Value.fromBoolean(false));
-    this.set("charisma", Value.fromI32(0));
-    this.set("vitality", Value.fromI32(0));
-    this.set("intellect", Value.fromI32(0));
-    this.set("dexterity", Value.fromI32(0));
-    this.set("name", Value.fromString(""));
   }
 
   save(): void {
@@ -124,12 +115,69 @@ export class LYNKNFTEntity extends Entity {
   }
 }
 
+export class MintLogEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save MintLogEntity entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type MintLogEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("MintLogEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): MintLogEntity | null {
+    return changetype<MintLogEntity | null>(store.get("MintLogEntity", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get eventTime(): i32 {
+    let value = this.get("eventTime");
+    return value!.toI32();
+  }
+
+  set eventTime(value: i32) {
+    this.set("eventTime", Value.fromI32(value));
+  }
+
+  get num(): i32 {
+    let value = this.get("num");
+    return value!.toI32();
+  }
+
+  set num(value: i32) {
+    this.set("num", Value.fromI32(value));
+  }
+
+  get tx(): Bytes {
+    let value = this.get("tx");
+    return value!.toBytes();
+  }
+
+  set tx(value: Bytes) {
+    this.set("tx", Value.fromBytes(value));
+  }
+}
+
 export class UserEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("level", Value.fromI32(0));
   }
 
   save(): void {
