@@ -146,6 +146,15 @@ export class MintLogEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get owner(): Bytes {
+    let value = this.get("owner");
+    return value!.toBytes();
+  }
+
+  set owner(value: Bytes) {
+    this.set("owner", Value.fromBytes(value));
+  }
+
   get eventTime(): i32 {
     let value = this.get("eventTime");
     return value!.toI32();

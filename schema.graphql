@@ -12,6 +12,7 @@ type LYNKNFTEntity @entity {
 
 type MintLogEntity @entity {
   id: ID!
+  owner: Bytes! # address
   eventTime: Int!
   num: Int!
   tx: Bytes!
