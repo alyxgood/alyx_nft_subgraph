@@ -60,6 +60,15 @@ export class LYNKNFTEntity extends Entity {
     this.set("isList", Value.fromBoolean(value));
   }
 
+  get listIndex(): i32 {
+    let value = this.get("listIndex");
+    return value!.toI32();
+  }
+
+  set listIndex(value: i32) {
+    this.set("listIndex", Value.fromI32(value));
+  }
+
   get isStaking(): boolean {
     let value = this.get("isStaking");
     return value!.toBoolean();

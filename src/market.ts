@@ -21,6 +21,7 @@ export function handleCancel(event: CancelEvent): void {
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entityNFT) {
     entityNFT.isList = false
+    entityNFT.listIndex = 0
 
     entityNFT.save()
   }
@@ -42,6 +43,7 @@ export function handleList(event: ListEvent): void {
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entityNFT) {
     entityNFT.isList = true
+    entityNFT.listIndex = event.params.index.toI32()
     entityNFT.owner = event.params.seller
 
     entityNFT.save()
@@ -63,6 +65,7 @@ export function handleTake(event: TakeEvent): void {
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entityNFT) {
     entityNFT.isList = false
+    entityNFT.listIndex = 0
 
     entityNFT.save()
   }

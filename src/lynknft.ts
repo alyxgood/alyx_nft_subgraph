@@ -78,6 +78,9 @@ export function handleTransfer(event: Transfer): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (!entity || event.params.from.toHex() === Address.zero().toHex()) {
     entity = new LYNKNFTEntity(event.params.tokenId.toString())
+    entity.isList = false
+    entity.listIndex = 0
+    entity.isStaking = false
     entity.charisma = 0
     entity.vitality = 0
     entity.intellect = 0

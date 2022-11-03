@@ -2,6 +2,7 @@ type LYNKNFTEntity @entity {
   id: ID!
   owner: Bytes! # address
   isList: Boolean!
+  listIndex: Int!
   isStaking: Boolean!
   charisma: Int!
   vitality: Int!
