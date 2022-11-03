@@ -136,4 +136,4 @@ dataSources:
           handler: handleStake
         - event: UnStake(indexed address,uint256)
           handler: handleUnStake
-      file: ./src/lynknft.ts
+      file: ./src/staking.ts
