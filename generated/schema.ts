@@ -183,6 +183,155 @@ export class MintLogEntity extends Entity {
   }
 }
 
+export class RegisterLogEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save RegisterLogEntity entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type RegisterLogEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("RegisterLogEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): RegisterLogEntity | null {
+    return changetype<RegisterLogEntity | null>(
+      store.get("RegisterLogEntity", id)
+    );
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get eventTime(): i32 {
+    let value = this.get("eventTime");
+    return value!.toI32();
+  }
+
+  set eventTime(value: i32) {
+    this.set("eventTime", Value.fromI32(value));
+  }
+
+  get inviter(): Bytes {
+    let value = this.get("inviter");
+    return value!.toBytes();
+  }
+
+  set inviter(value: Bytes) {
+    this.set("inviter", Value.fromBytes(value));
+  }
+
+  get tx(): Bytes {
+    let value = this.get("tx");
+    return value!.toBytes();
+  }
+
+  set tx(value: Bytes) {
+    this.set("tx", Value.fromBytes(value));
+  }
+}
+
+export class StakingLogEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save StakingLogEntity entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type StakingLogEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("StakingLogEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): StakingLogEntity | null {
+    return changetype<StakingLogEntity | null>(
+      store.get("StakingLogEntity", id)
+    );
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokenId(): i32 {
+    let value = this.get("tokenId");
+    return value!.toI32();
+  }
+
+  set tokenId(value: i32) {
+    this.set("tokenId", Value.fromI32(value));
+  }
+
+  get owner(): Bytes {
+    let value = this.get("owner");
+    return value!.toBytes();
+  }
+
+  set owner(value: Bytes) {
+    this.set("owner", Value.fromBytes(value));
+  }
+
+  get eventType(): string {
+    let value = this.get("eventType");
+    return value!.toString();
+  }
+
+  set eventType(value: string) {
+    this.set("eventType", Value.fromString(value));
+  }
+
+  get eventTime(): i32 {
+    let value = this.get("eventTime");
+    return value!.toI32();
+  }
+
+  set eventTime(value: i32) {
+    this.set("eventTime", Value.fromI32(value));
+  }
+
+  get tx(): Bytes {
+    let value = this.get("tx");
+    return value!.toBytes();
+  }
+
+  set tx(value: Bytes) {
+    this.set("tx", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+}
+
 export class UserEntity extends Entity {
   constructor(id: string) {
     super();
@@ -221,5 +370,84 @@ export class UserEntity extends Entity {
 
   set level(value: i32) {
     this.set("level", Value.fromI32(value));
+  }
+}
+
+export class MarketGoodsEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save MarketGoodsEntity entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type MarketGoodsEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("MarketGoodsEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): MarketGoodsEntity | null {
+    return changetype<MarketGoodsEntity | null>(
+      store.get("MarketGoodsEntity", id)
+    );
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get onSale(): boolean {
+    let value = this.get("onSale");
+    return value!.toBoolean();
+  }
+
+  set onSale(value: boolean) {
+    this.set("onSale", Value.fromBoolean(value));
+  }
+
+  get seller(): Bytes {
+    let value = this.get("seller");
+    return value!.toBytes();
+  }
+
+  set seller(value: Bytes) {
+    this.set("seller", Value.fromBytes(value));
+  }
+
+  get index(): i32 {
+    let value = this.get("index");
+    return value!.toI32();
+  }
+
+  set index(value: i32) {
+    this.set("index", Value.fromI32(value));
+  }
+
+  get acceptToken(): Bytes {
+    let value = this.get("acceptToken");
+    return value!.toBytes();
+  }
+
+  set acceptToken(value: Bytes) {
+    this.set("acceptToken", Value.fromBytes(value));
+  }
+
+  get priceInAcceptToken(): BigInt {
+    let value = this.get("priceInAcceptToken");
+    return value!.toBigInt();
+  }
+
+  set priceInAcceptToken(value: BigInt) {
+    this.set("priceInAcceptToken", Value.fromBigInt(value));
   }
 }

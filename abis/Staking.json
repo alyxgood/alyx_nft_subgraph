@@ -126,6 +126,25 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Claim",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": false,
         "internalType": "uint8",
         "name": "version",
@@ -146,12 +165,12 @@
       },
       {
         "indexed": false,
-        "internalType": "enum IUser.Level",
-        "name": "level",
-        "type": "uint8"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "name": "LevelUp",
+    "name": "Stake",
     "type": "event"
   },
   {
@@ -165,12 +184,12 @@
       },
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "ref",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "name": "Register",
+    "name": "UnStake",
     "type": "event"
   },
   {
@@ -201,7 +220,14 @@
   },
   {
     "inputs": [],
-    "name": "__User_init",
+    "name": "__Staking_init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimReward",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -210,35 +236,12 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_userAddr",
+        "name": "account",
         "type": "address"
       }
     ],
-    "name": "auditLevel",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_userAddr",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_nftIds",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "calcAchievementReward",
+    "name": "claimableOf",
     "outputs": [
-      {
-        "internalType": "bool[]",
-        "name": "",
-        "type": "bool[]"
-      },
       {
         "internalType": "uint256",
         "name": "",
@@ -251,30 +254,108 @@
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "_nftIds",
-        "type": "uint256[]"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "name": "claimAchievementReward",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "name": "lastUpdateTimeOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
       {
         "internalType": "address",
-        "name": "_userAddr",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "miningPowerOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "charisma",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dexterity",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "_rewardAmount",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC721Received",
+    "outputs": [
+      {
+        "internalType": "bytes4",
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "rewardOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "hookByClaimReward",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "nftId",
+        "type": "uint256"
+      }
+    ],
+    "name": "stake",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -287,193 +368,9 @@
         "type": "uint256"
       }
     ],
-    "name": "hookByStake",
+    "name": "unstake",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "nftId",
-        "type": "uint256"
-      }
-    ],
-    "name": "hookByUnStake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_userAddr",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_performance",
-        "type": "uint256"
-      }
-    ],
-    "name": "hookByUpgrade",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_userAddr",
-        "type": "address"
-      }
-    ],
-    "name": "isValidUser",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_userAddr",
-        "type": "address"
-      }
-    ],
-    "name": "levelUpAble",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_userAddr",
-        "type": "address"
-      },
-      {
-        "internalType": "enum IUser.Level",
-        "name": "_level",
-        "type": "uint8"
-      }
-    ],
-    "name": "refCounterOf",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_refAddr",
-        "type": "address"
-      }
-    ],
-    "name": "register",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "stakeNFTs",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "lastUpdateTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "stakedDuration",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "userInfoOf",
-    "outputs": [
-      {
-        "internalType": "enum IUser.Level",
-        "name": "level",
-        "type": "uint8"
-      },
-      {
-        "internalType": "address",
-        "name": "refAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "stakeRev",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "socialRev",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "communityRev",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "contributionRev",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "achievementRev",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "performance",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {

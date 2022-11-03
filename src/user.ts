@@ -1,11 +1,8 @@
 import {
-  UserInitialized as UserInitializedEvent,
+  Register as RegisterEvent,
   LevelUp as LevelUpEvent
 } from "../generated/User/User"
-import {UserEntity} from "../generated/schema";
-
-export function handleUserInitialized(event: UserInitializedEvent): void {
-}
+import {RegisterLogEntity, UserEntity} from "../generated/schema";
 
 export function handleLevelUp(event: LevelUpEvent): void {
   let entity = UserEntity.load(event.params.account.toHex())
@@ -13,6 +10,18 @@ export function handleLevelUp(event: LevelUpEvent): void {
     entity = new UserEntity(event.params.account.toHex())
   }
   entity.level = event.params.level
+
+  entity.save()
+}
+
+export function handleRegister(event: RegisterEvent): void {
+  let entity = RegisterLogEntity.load(event.params.account.toHex())
+  if (!entity) {
+    entity = new RegisterLogEntity(event.params.account.toHex())
+  }
+  entity.eventTime = event.block.timestamp.toI32()
+  entity.inviter = event.params.ref
+  entity.tx = event.transaction.hash
 
   entity.save()
 }

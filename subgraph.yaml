@@ -24,8 +24,6 @@ dataSources:
       eventHandlers:
         - event: Cancel(indexed uint256,uint256)
           handler: handleCancel
-        - event: MarketInitialized(uint8)
-          handler: handleMarketInitialized
         - event: List(indexed address,indexed uint256,uint256,address,uint256)
           handler: handleList
         - event: Take(indexed address,indexed uint256,uint256)
@@ -49,10 +47,10 @@ dataSources:
         - name: User
           file: ./abis/User.json
       eventHandlers:
-        - event: UserInitialized(uint8)
-          handler: handleUserInitialized
         - event: LevelUp(indexed address,uint8)
           handler: handleLevelUp
+        - event: Register(indexed address,address)
+          handler: handleRegister
       file: ./src/user.ts
   - kind: ethereum
     name: DBContract
@@ -114,4 +112,28 @@ dataSources:
           handler: handleTransfer
         - event: Upgrade(indexed uint256,uint8,uint256)
           handler: handleUpgrade
+      file: ./src/lynknft.ts
+  - kind: ethereum
+    name: Staking
+    network: ALYX
+    source:
+      address: "0x6E4e03E0AE4E7d38A8581A0e91242170b23639e7"
+      abi: Staking
+      startBlock: 170601
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - LevelUp
+      abis:
+        - name: Staking
+          file: ./abis/Staking.json
+      eventHandlers:
+        - event: Claim(indexed address,uint256)
+          handler: handleClaim
+        - event: Stake(indexed address,uint256)
+          handler: handleStake
+        - event: UnStake(indexed address,uint256)
+          handler: handleUnStake
       file: ./src/lynknft.ts

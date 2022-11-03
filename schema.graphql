@@ -18,7 +18,33 @@ type MintLogEntity @entity {
   tx: Bytes!
 }
 
+type RegisterLogEntity @entity {
+  id: ID!
+  eventTime: Int!
+  inviter: Bytes!
+  tx: Bytes!
+}
+
+type StakingLogEntity @entity {
+  id: ID!
+  tokenId: Int!
+  owner: Bytes!
+  eventType: String!
+  eventTime: Int!
+  tx: Bytes!
+  amount: BigInt!
+}
+
 type UserEntity @entity {
   id: ID!
   level: Int! # uint8
+}
+
+type MarketGoodsEntity @entity {
+  id: ID!
+  onSale: Boolean!
+  seller: Bytes!
+  index: Int!
+  acceptToken: Bytes!
+  priceInAcceptToken: BigInt!
 }
