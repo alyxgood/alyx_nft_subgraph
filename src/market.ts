@@ -3,7 +3,7 @@ import {
   List as ListEvent,
   Take as TakeEvent
 } from "../generated/Market/Market"
-import {MarketGoodsEntity} from "../generated/schema";
+import {LYNKNFTEntity, MarketGoodsEntity} from "../generated/schema";
 import {Address, BigInt} from "@graphprotocol/graph-ts";
 
 export function handleCancel(event: CancelEvent): void {
@@ -16,6 +16,13 @@ export function handleCancel(event: CancelEvent): void {
     entity.priceInAcceptToken = BigInt.zero()
 
     entity.save()
+  }
+
+  let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
+  if (entityNFT) {
+    entityNFT.isList = false
+
+    entityNFT.save()
   }
 }
 
@@ -31,6 +38,14 @@ export function handleList(event: ListEvent): void {
   entity.priceInAcceptToken = event.params.priceInAcceptToken
 
   entity.save()
+
+  let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
+  if (entityNFT) {
+    entityNFT.isList = true
+    entityNFT.owner = event.params.seller
+
+    entityNFT.save()
+  }
 }
 
 export function handleTake(event: TakeEvent): void {
@@ -43,5 +58,12 @@ export function handleTake(event: TakeEvent): void {
     entity.priceInAcceptToken = BigInt.zero()
 
     entity.save()
+  }
+
+  let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
+  if (entityNFT) {
+    entityNFT.isList = false
+
+    entityNFT.save()
   }
 }

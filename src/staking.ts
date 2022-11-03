@@ -3,7 +3,7 @@ import {
     Stake as StakeEvent,
     UnStake as UnStakeEvent
 } from "../generated/Staking/Staking"
-import {StakingLogEntity} from "../generated/schema";
+import {LYNKNFTEntity, StakingLogEntity} from "../generated/schema";
 import {BigInt} from "@graphprotocol/graph-ts";
 
 export function handleClaim(event: ClaimEvent): void {
@@ -28,6 +28,14 @@ export function handleStake(event: StakeEvent): void {
     entity.amount = BigInt.zero()
 
     entity.save()
+
+    let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
+    if (entityNFT) {
+        entityNFT.isStaking = true
+        entityNFT.owner = event.params.account
+
+        entityNFT.save()
+    }
 }
 
 export function handleUnStake(event: UnStakeEvent): void {
@@ -40,4 +48,11 @@ export function handleUnStake(event: UnStakeEvent): void {
     entity.amount = BigInt.zero()
 
     entity.save()
+
+    let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
+    if (entityNFT) {
+        entityNFT.isStaking = false
+
+        entityNFT.save()
+    }
 }

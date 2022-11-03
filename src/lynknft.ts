@@ -10,7 +10,6 @@ import {
 } from "../generated/LYNKNFT/LYNKNFT"
 import {LYNKNFTEntity, MintLogEntity} from "../generated/schema"
 import {DBContract} from "../generated/DBContract/DBContract";
-import {DB_CONTRACT, LISTING_LYNKNFT, MARKET_CONTRACT, STAKING_CONTRACT, STAKING_LYNKNFT} from "../constants/constants";
 import {Market} from "../generated/Market/Market";
 
 export function handleApproval(event: Approval): void {
@@ -85,21 +84,7 @@ export function handleTransfer(event: Transfer): void {
     entity.dexterity = 0
     entity.name = ''
   }
-  if (
-      event.params.to.toHex().toLowerCase().indexOf(STAKING_LYNKNFT.toLowerCase().substring(2)) >= 0 ||
-      event.params.to.toHex().toLowerCase().indexOf(STAKING_CONTRACT.toLowerCase().substring(2)) >= 0
-  ) {
-    entity.isStaking = true
-  } else if (
-      event.params.to.toHex().toLowerCase().indexOf(LISTING_LYNKNFT.toLowerCase().substring(2)) >= 0 ||
-      event.params.to.toHex().toLowerCase().indexOf(MARKET_CONTRACT.toLowerCase().substring(2)) >= 0
-  ) {
-    entity.isList = true
-  } else {
-    entity.isList = false
-    entity.isStaking = false
-    entity.owner = event.params.to
-  }
+  entity.owner = event.params.to
 
   entity.save()
 }
