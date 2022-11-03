@@ -24,4 +24,12 @@ export function handleRegister(event: RegisterEvent): void {
   entity.tx = event.transaction.hash
 
   entity.save()
+
+  let entityUser = UserEntity.load(event.params.account.toHex())
+  if (!entityUser) {
+    entityUser = new UserEntity(event.params.account.toHex())
+    entityUser.level = 0;
+
+    entityUser.save()
+  }
 }
