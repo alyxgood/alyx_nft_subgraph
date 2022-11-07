@@ -43,6 +43,7 @@ type UserEntity @entity {
 
 type MarketGoodsEntity @entity {
   id: ID!
+  name: String!
   onSale: Boolean!
   seller: Bytes!
   index: Int!

@@ -167,14 +167,6 @@ export class Staking__miningPowerOfResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
-
-  getCharisma(): BigInt {
-    return this.value0;
-  }
-
-  getDexterity(): BigInt {
-    return this.value1;
-  }
 }
 
 export class Staking extends ethereum.SmartContract {

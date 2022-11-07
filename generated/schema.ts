@@ -15,6 +15,16 @@ export class LYNKNFTEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("owner", Value.fromBytes(Bytes.empty()));
+    this.set("isList", Value.fromBoolean(false));
+    this.set("listIndex", Value.fromI32(0));
+    this.set("isStaking", Value.fromBoolean(false));
+    this.set("charisma", Value.fromI32(0));
+    this.set("vitality", Value.fromI32(0));
+    this.set("intellect", Value.fromI32(0));
+    this.set("dexterity", Value.fromI32(0));
+    this.set("name", Value.fromString(""));
   }
 
   save(): void {
@@ -128,6 +138,11 @@ export class MintLogEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("owner", Value.fromBytes(Bytes.empty()));
+    this.set("eventTime", Value.fromI32(0));
+    this.set("num", Value.fromI32(0));
+    this.set("tx", Value.fromBytes(Bytes.empty()));
   }
 
   save(): void {
@@ -196,6 +211,10 @@ export class RegisterLogEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("eventTime", Value.fromI32(0));
+    this.set("inviter", Value.fromBytes(Bytes.empty()));
+    this.set("tx", Value.fromBytes(Bytes.empty()));
   }
 
   save(): void {
@@ -257,6 +276,13 @@ export class StakingLogEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("tokenId", Value.fromI32(0));
+    this.set("owner", Value.fromBytes(Bytes.empty()));
+    this.set("eventType", Value.fromString(""));
+    this.set("eventTime", Value.fromI32(0));
+    this.set("tx", Value.fromBytes(Bytes.empty()));
+    this.set("amount", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -345,6 +371,8 @@ export class UserEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("level", Value.fromI32(0));
   }
 
   save(): void {
@@ -386,6 +414,13 @@ export class MarketGoodsEntity extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
+
+    this.set("name", Value.fromString(""));
+    this.set("onSale", Value.fromBoolean(false));
+    this.set("seller", Value.fromBytes(Bytes.empty()));
+    this.set("index", Value.fromI32(0));
+    this.set("acceptToken", Value.fromBytes(Bytes.empty()));
+    this.set("priceInAcceptToken", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -413,6 +448,15 @@ export class MarketGoodsEntity extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 
   get onSale(): boolean {

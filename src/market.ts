@@ -38,16 +38,18 @@ export function handleList(event: ListEvent): void {
   entity.acceptToken = event.params.acceptToken
   entity.priceInAcceptToken = event.params.priceInAcceptToken
 
-  entity.save()
-
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entityNFT) {
+    entity.name = entityNFT.name
+
     entityNFT.isList = true
     entityNFT.listIndex = event.params.index.toI32()
     entityNFT.owner = event.params.seller
 
     entityNFT.save()
   }
+
+  entity.save()
 }
 
 export function handleTake(event: TakeEvent): void {
