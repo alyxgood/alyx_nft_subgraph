@@ -17,6 +17,7 @@ export class LYNKNFTEntity extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("owner", Value.fromBytes(Bytes.empty()));
+    this.set("level", Value.fromI32(0));
     this.set("isList", Value.fromBoolean(false));
     this.set("listIndex", Value.fromI32(0));
     this.set("isStaking", Value.fromBoolean(false));
@@ -59,6 +60,15 @@ export class LYNKNFTEntity extends Entity {
 
   set owner(value: Bytes) {
     this.set("owner", Value.fromBytes(value));
+  }
+
+  get level(): i32 {
+    let value = this.get("level");
+    return value!.toI32();
+  }
+
+  set level(value: i32) {
+    this.set("level", Value.fromI32(value));
   }
 
   get isList(): boolean {

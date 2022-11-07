@@ -1,6 +1,5 @@
-import {Address, BigInt} from "@graphprotocol/graph-ts"
+import {Address} from "@graphprotocol/graph-ts"
 import {
-  LYNKNFT,
   Approval,
   ApprovalForAll,
   Initialized,
@@ -9,8 +8,7 @@ import {
   Mint
 } from "../generated/LYNKNFT/LYNKNFT"
 import {LYNKNFTEntity, MintLogEntity} from "../generated/schema"
-import {DBContract} from "../generated/DBContract/DBContract";
-import {Market} from "../generated/Market/Market";
+import {ATTRIBUTE_CA, ATTRIBUTE_DX, ATTRIBUTE_IN, ATTRIBUTE_VA} from "../constants/constants";
 
 export function handleApproval(event: Approval): void {
   // // Entities can be loaded from the store using a string ID; this ID
@@ -103,6 +101,33 @@ export function handleUpgrade(event: Upgrade): void {
       entity.intellect += event.params.point.toI32()
     else if (event.params.attr == 3)
       entity.dexterity += event.params.point.toI32()
+
+    let levelToken: i32
+    let levelCurrentAttr: i32 = 0
+    for (let index: i32 = 0; index < ATTRIBUTE_CA.length; index++) {
+      if (entity.charisma >= ATTRIBUTE_CA[index]) {
+        levelCurrentAttr = index + 1
+      }
+    }
+    levelToken = levelCurrentAttr
+    for (let index: i32 = 0; index < ATTRIBUTE_VA.length; index++) {
+      if (entity.vitality >= ATTRIBUTE_VA[index]) {
+        levelCurrentAttr = index + 1
+      }
+    }
+    levelToken = levelToken > levelCurrentAttr ? levelCurrentAttr : levelToken
+    for (let index: i32 = 0; index < ATTRIBUTE_IN.length; index++) {
+      if (entity.intellect >= ATTRIBUTE_IN[index]) {
+        levelCurrentAttr = index + 1
+      }
+    }
+    levelToken = levelToken > levelCurrentAttr ? levelCurrentAttr : levelToken
+    for (let index: i32 = 0; index < ATTRIBUTE_DX.length; index++) {
+      if (entity.dexterity >= ATTRIBUTE_DX[index]) {
+        levelCurrentAttr = index + 1
+      }
+    }
+    entity.level = levelToken > levelCurrentAttr ? levelCurrentAttr : levelToken
 
     entity.save()
   }
