@@ -382,6 +382,7 @@ export class UserEntity extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
+    this.set("address", Value.fromBytes(Bytes.empty()));
     this.set("level", Value.fromI32(0));
   }
 
@@ -408,6 +409,15 @@ export class UserEntity extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get address(): Bytes {
+    let value = this.get("address");
+    return value!.toBytes();
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
   }
 
   get level(): i32 {

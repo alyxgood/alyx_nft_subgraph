@@ -8,6 +8,7 @@ export function handleLevelUp(event: LevelUpEvent): void {
   let entity = UserEntity.load(event.params.account.toHex())
   if (!entity) {
     entity = new UserEntity(event.params.account.toHex())
+    entity.address = event.params.account
   }
   entity.level = event.params.level
 
@@ -28,6 +29,7 @@ export function handleRegister(event: RegisterEvent): void {
   let entityUser = UserEntity.load(event.params.account.toHex())
   if (!entityUser) {
     entityUser = new UserEntity(event.params.account.toHex())
+    entityUser.address = event.params.account
     entityUser.level = 0;
 
     entityUser.save()

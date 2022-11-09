@@ -39,6 +39,7 @@ type StakingLogEntity @entity {
 
 type UserEntity @entity {
   id: ID!
+  address: Bytes! # address
   level: Int! # uint8
 }
 
