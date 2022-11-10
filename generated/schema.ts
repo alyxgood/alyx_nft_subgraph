@@ -438,6 +438,7 @@ export class MarketGoodsEntity extends Entity {
     this.set("name", Value.fromString(""));
     this.set("onSale", Value.fromBoolean(false));
     this.set("seller", Value.fromBytes(Bytes.empty()));
+    this.set("level", Value.fromI32(0));
     this.set("index", Value.fromI32(0));
     this.set("acceptToken", Value.fromBytes(Bytes.empty()));
     this.set("priceInAcceptToken", Value.fromBigInt(BigInt.zero()));
@@ -495,6 +496,15 @@ export class MarketGoodsEntity extends Entity {
 
   set seller(value: Bytes) {
     this.set("seller", Value.fromBytes(value));
+  }
+
+  get level(): i32 {
+    let value = this.get("level");
+    return value!.toI32();
+  }
+
+  set level(value: i32) {
+    this.set("level", Value.fromI32(value));
   }
 
   get index(): i32 {

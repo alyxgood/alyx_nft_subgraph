@@ -48,6 +48,7 @@ type MarketGoodsEntity @entity {
   name: String!
   onSale: Boolean!
   seller: Bytes!
+  level: Int!
   index: Int!
   acceptToken: Bytes!
   priceInAcceptToken: BigInt!

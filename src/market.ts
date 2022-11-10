@@ -5,6 +5,7 @@ import {
 } from "../generated/Market/Market"
 import {LYNKNFTEntity, MarketGoodsEntity} from "../generated/schema";
 import {Address, BigInt} from "@graphprotocol/graph-ts";
+import {calcTokenLevel} from "../utils/utils";
 
 export function handleCancel(event: CancelEvent): void {
   let entity = MarketGoodsEntity.load(event.params.tokenId.toString())
@@ -41,6 +42,7 @@ export function handleList(event: ListEvent): void {
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entityNFT) {
     entity.name = entityNFT.name
+    entity.level = calcTokenLevel(entityNFT)
 
     entityNFT.isList = true
     entityNFT.listIndex = event.params.index.toI32()
