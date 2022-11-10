@@ -42,7 +42,7 @@ export function handleList(event: ListEvent): void {
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entityNFT) {
     entity.name = entityNFT.name
-    entity.level = calcTokenLevel(entityNFT)
+    entity.level = entityNFT.level
 
     entityNFT.isList = true
     entityNFT.listIndex = event.params.index.toI32()
