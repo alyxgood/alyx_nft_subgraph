@@ -110,18 +110,24 @@ export function handleUpgrade(event: Upgrade): void {
       }
     }
     levelToken = levelCurrentAttr
+
+    levelCurrentAttr = 0
     for (let index: i32 = 0; index < ATTRIBUTE_VA.length; index++) {
       if (entity.vitality >= ATTRIBUTE_VA[index]) {
         levelCurrentAttr = index + 1
       }
     }
     levelToken = levelToken > levelCurrentAttr ? levelCurrentAttr : levelToken
+
+    levelCurrentAttr = 0
     for (let index: i32 = 0; index < ATTRIBUTE_IN.length; index++) {
       if (entity.intellect >= ATTRIBUTE_IN[index]) {
         levelCurrentAttr = index + 1
       }
     }
     levelToken = levelToken > levelCurrentAttr ? levelCurrentAttr : levelToken
+
+    levelCurrentAttr = 0
     for (let index: i32 = 0; index < ATTRIBUTE_DX.length; index++) {
       if (entity.dexterity >= ATTRIBUTE_DX[index]) {
         levelCurrentAttr = index + 1
