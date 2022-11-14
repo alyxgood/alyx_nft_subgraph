@@ -14,6 +14,7 @@ type LYNKNFTEntity @entity {
 
 type MintLogEntity @entity {
   id: ID!
+  name: String!
   owner: Bytes! # address
   eventTime: Int!
   num: Int!
@@ -30,6 +31,7 @@ type RegisterLogEntity @entity {
 type StakingLogEntity @entity {
   id: ID!
   tokenId: Int!
+  name: String!
   owner: Bytes!
   eventType: String!
   eventTime: Int!
@@ -57,6 +59,7 @@ type MarketGoodsEntity @entity {
 type TradeLogEntity @entity {
   id: ID!
   tokenId: Int!
+  name: String!
   eventTime: Int!
   buyer: Bytes!
   seller: Bytes!

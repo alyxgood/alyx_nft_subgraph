@@ -149,6 +149,7 @@ export class MintLogEntity extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
+    this.set("name", Value.fromString(""));
     this.set("owner", Value.fromBytes(Bytes.empty()));
     this.set("eventTime", Value.fromI32(0));
     this.set("num", Value.fromI32(0));
@@ -178,6 +179,15 @@ export class MintLogEntity extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 
   get owner(): Bytes {
@@ -288,6 +298,7 @@ export class StakingLogEntity extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("tokenId", Value.fromI32(0));
+    this.set("name", Value.fromString(""));
     this.set("owner", Value.fromBytes(Bytes.empty()));
     this.set("eventType", Value.fromString(""));
     this.set("eventTime", Value.fromI32(0));
@@ -329,6 +340,15 @@ export class StakingLogEntity extends Entity {
 
   set tokenId(value: i32) {
     this.set("tokenId", Value.fromI32(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 
   get owner(): Bytes {
@@ -541,6 +561,7 @@ export class TradeLogEntity extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("tokenId", Value.fromI32(0));
+    this.set("name", Value.fromString(""));
     this.set("eventTime", Value.fromI32(0));
     this.set("buyer", Value.fromBytes(Bytes.empty()));
     this.set("seller", Value.fromBytes(Bytes.empty()));
@@ -579,6 +600,15 @@ export class TradeLogEntity extends Entity {
 
   set tokenId(value: i32) {
     this.set("tokenId", Value.fromI32(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 
   get eventTime(): i32 {

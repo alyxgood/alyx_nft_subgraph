@@ -19,22 +19,23 @@ export function handleClaim(event: ClaimEvent): void {
 }
 
 export function handleStake(event: StakeEvent): void {
-    let entity = new StakingLogEntity(`${event.transaction.hash.toHex()}-${event.logIndex.toI32()}`)
-    entity.tokenId = event.params.tokenId.toI32()
-    entity.owner = event.params.account
-    entity.eventType = 'stake'
-    entity.eventTime = event.block.timestamp.toI32()
-    entity.tx = event.transaction.hash
-    entity.amount = BigInt.zero()
-
-    entity.save()
-
     let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
     if (entityNFT) {
         entityNFT.isStaking = true
         entityNFT.owner = event.params.account
 
         entityNFT.save()
+
+        let entity = new StakingLogEntity(`${event.transaction.hash.toHex()}-${event.logIndex.toI32()}`)
+        entity.tokenId = event.params.tokenId.toI32()
+        entity.name = entityNFT.name
+        entity.owner = event.params.account
+        entity.eventType = 'stake'
+        entity.eventTime = event.block.timestamp.toI32()
+        entity.tx = event.transaction.hash
+        entity.amount = BigInt.zero()
+
+        entity.save()
     }
 }
 

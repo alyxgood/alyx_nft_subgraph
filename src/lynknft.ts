@@ -149,16 +149,17 @@ export function handleMint(event: Mint): void {
     entity.name = event.params.name
 
     entity.save()
-  }
 
-  let logEntity = MintLogEntity.load(event.params.tokenId.toString())
-  if (!logEntity) {
-    logEntity = new MintLogEntity(event.params.tokenId.toString())
-    logEntity.owner = event.transaction.from
-    logEntity.eventTime = event.block.timestamp.toI32()
-    logEntity.num = 1
-    logEntity.tx = event.transaction.hash
+    let logEntity = MintLogEntity.load(event.params.tokenId.toString())
+    if (!logEntity) {
+      logEntity = new MintLogEntity(event.params.tokenId.toString())
+      logEntity.name = entity.name
+      logEntity.owner = event.transaction.from
+      logEntity.eventTime = event.block.timestamp.toI32()
+      logEntity.num = 1
+      logEntity.tx = event.transaction.hash
 
-    logEntity.save()
+      logEntity.save()
+    }
   }
 }

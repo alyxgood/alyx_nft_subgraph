@@ -60,6 +60,7 @@ export function handleTake(event: TakeEvent): void {
     tradeEntity.buyer = event.params.buyer
     tradeEntity.seller = entity.seller
     tradeEntity.tokenId = event.params.tokenId.toI32()
+    tradeEntity.name = entity.name
     tradeEntity.tx = event.transaction.hash
     tradeEntity.eventTime = event.block.timestamp.toI32()
     tradeEntity.save()
