@@ -3,7 +3,7 @@ import {
   List as ListEvent,
   Take as TakeEvent
 } from "../generated/Market/Market"
-import {LYNKNFTEntity, MarketGoodsEntity} from "../generated/schema";
+import {LYNKNFTEntity, MarketGoodsEntity, TradeLogEntity} from "../generated/schema";
 import {Address, BigInt} from "@graphprotocol/graph-ts";
 
 export function handleCancel(event: CancelEvent): void {
@@ -56,6 +56,14 @@ export function handleList(event: ListEvent): void {
 export function handleTake(event: TakeEvent): void {
   let entity = MarketGoodsEntity.load(event.params.tokenId.toString())
   if (entity) {
+    const tradeEntity = new TradeLogEntity(`${event.transaction.hash.toHex()}-${event.logIndex.toI32()}`)
+    tradeEntity.buyer = event.params.buyer
+    tradeEntity.seller = entity.seller
+    tradeEntity.tokenId = event.params.tokenId.toI32()
+    tradeEntity.tx = event.transaction.hash
+    tradeEntity.eventTime = event.block.timestamp.toI32()
+    tradeEntity.save()
+
     entity.onSale = false
     entity.seller = Address.zero()
     entity.index = 0

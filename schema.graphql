@@ -53,3 +53,12 @@ type MarketGoodsEntity @entity {
   acceptToken: Bytes!
   priceInAcceptToken: BigInt!
 }
+
+type TradeLogEntity @entity {
+  id: ID!
+  tokenId: Int!
+  eventTime: Int!
+  buyer: Bytes!
+  seller: Bytes!
+  tx: Bytes!
+}

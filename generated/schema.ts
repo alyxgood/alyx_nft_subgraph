@@ -534,3 +534,86 @@ export class MarketGoodsEntity extends Entity {
     this.set("priceInAcceptToken", Value.fromBigInt(value));
   }
 }
+
+export class TradeLogEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("tokenId", Value.fromI32(0));
+    this.set("eventTime", Value.fromI32(0));
+    this.set("buyer", Value.fromBytes(Bytes.empty()));
+    this.set("seller", Value.fromBytes(Bytes.empty()));
+    this.set("tx", Value.fromBytes(Bytes.empty()));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save TradeLogEntity entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type TradeLogEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("TradeLogEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): TradeLogEntity | null {
+    return changetype<TradeLogEntity | null>(store.get("TradeLogEntity", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokenId(): i32 {
+    let value = this.get("tokenId");
+    return value!.toI32();
+  }
+
+  set tokenId(value: i32) {
+    this.set("tokenId", Value.fromI32(value));
+  }
+
+  get eventTime(): i32 {
+    let value = this.get("eventTime");
+    return value!.toI32();
+  }
+
+  set eventTime(value: i32) {
+    this.set("eventTime", Value.fromI32(value));
+  }
+
+  get buyer(): Bytes {
+    let value = this.get("buyer");
+    return value!.toBytes();
+  }
+
+  set buyer(value: Bytes) {
+    this.set("buyer", Value.fromBytes(value));
+  }
+
+  get seller(): Bytes {
+    let value = this.get("seller");
+    return value!.toBytes();
+  }
+
+  set seller(value: Bytes) {
+    this.set("seller", Value.fromBytes(value));
+  }
+
+  get tx(): Bytes {
+    let value = this.get("tx");
+    return value!.toBytes();
+  }
+
+  set tx(value: Bytes) {
+    this.set("tx", Value.fromBytes(value));
+  }
+}
