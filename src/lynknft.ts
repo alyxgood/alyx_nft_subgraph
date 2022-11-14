@@ -93,14 +93,39 @@ export function handleTransfer(event: Transfer): void {
 export function handleUpgrade(event: Upgrade): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entity) {
-    if (event.params.attr == 0)
+    if (event.params.attr == 0) {
       entity.charisma += event.params.point.toI32()
-    else if (event.params.attr == 1)
+      for (let index: i32 = ATTRIBUTE_CA.length - 1; index >= 0; index--) {
+        if (entity.charisma >= ATTRIBUTE_CA[index]) {
+          entity.charismaThreshold = index == ATTRIBUTE_CA.length - 1 ? ATTRIBUTE_CA[ATTRIBUTE_CA.length - 1] : ATTRIBUTE_CA[index + 1]
+          break
+        }
+      }
+    } else if (event.params.attr == 1) {
       entity.vitality += event.params.point.toI32()
-    else if (event.params.attr == 2)
+      for (let index: i32 = ATTRIBUTE_VA.length - 1; index >= 0; index--) {
+        if (entity.vitality >= ATTRIBUTE_VA[index]) {
+          entity.vitalityThreshold = index == ATTRIBUTE_VA.length - 1 ? ATTRIBUTE_VA[ATTRIBUTE_VA.length - 1] : ATTRIBUTE_VA[index + 1]
+          break
+        }
+      }
+    } else if (event.params.attr == 2) {
       entity.intellect += event.params.point.toI32()
-    else if (event.params.attr == 3)
+      for (let index: i32 = ATTRIBUTE_IN.length - 1; index >= 0; index--) {
+        if (entity.intellect >= ATTRIBUTE_IN[index]) {
+          entity.intellectThreshold = index == ATTRIBUTE_IN.length - 1 ? ATTRIBUTE_IN[ATTRIBUTE_IN.length - 1] : ATTRIBUTE_IN[index + 1]
+          break
+        }
+      }
+    } else if (event.params.attr == 3) {
       entity.dexterity += event.params.point.toI32()
+      for (let index: i32 = ATTRIBUTE_DX.length - 1; index >= 0; index--) {
+        if (entity.dexterity >= ATTRIBUTE_DX[index]) {
+          entity.dexterityThreshold = index == ATTRIBUTE_DX.length - 1 ? ATTRIBUTE_DX[ATTRIBUTE_DX.length - 1] : ATTRIBUTE_DX[index + 1]
+          break
+        }
+      }
+    }
 
     let levelToken: i32
     let levelCurrentAttr: i32 = 0

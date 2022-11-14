@@ -22,9 +22,13 @@ export class LYNKNFTEntity extends Entity {
     this.set("listIndex", Value.fromI32(0));
     this.set("isStaking", Value.fromBoolean(false));
     this.set("charisma", Value.fromI32(0));
+    this.set("charismaThreshold", Value.fromI32(0));
     this.set("vitality", Value.fromI32(0));
+    this.set("vitalityThreshold", Value.fromI32(0));
     this.set("intellect", Value.fromI32(0));
+    this.set("intellectThreshold", Value.fromI32(0));
     this.set("dexterity", Value.fromI32(0));
+    this.set("dexterityThreshold", Value.fromI32(0));
     this.set("name", Value.fromString(""));
   }
 
@@ -107,6 +111,15 @@ export class LYNKNFTEntity extends Entity {
     this.set("charisma", Value.fromI32(value));
   }
 
+  get charismaThreshold(): i32 {
+    let value = this.get("charismaThreshold");
+    return value!.toI32();
+  }
+
+  set charismaThreshold(value: i32) {
+    this.set("charismaThreshold", Value.fromI32(value));
+  }
+
   get vitality(): i32 {
     let value = this.get("vitality");
     return value!.toI32();
@@ -114,6 +127,15 @@ export class LYNKNFTEntity extends Entity {
 
   set vitality(value: i32) {
     this.set("vitality", Value.fromI32(value));
+  }
+
+  get vitalityThreshold(): i32 {
+    let value = this.get("vitalityThreshold");
+    return value!.toI32();
+  }
+
+  set vitalityThreshold(value: i32) {
+    this.set("vitalityThreshold", Value.fromI32(value));
   }
 
   get intellect(): i32 {
@@ -125,6 +147,15 @@ export class LYNKNFTEntity extends Entity {
     this.set("intellect", Value.fromI32(value));
   }
 
+  get intellectThreshold(): i32 {
+    let value = this.get("intellectThreshold");
+    return value!.toI32();
+  }
+
+  set intellectThreshold(value: i32) {
+    this.set("intellectThreshold", Value.fromI32(value));
+  }
+
   get dexterity(): i32 {
     let value = this.get("dexterity");
     return value!.toI32();
@@ -132,6 +163,15 @@ export class LYNKNFTEntity extends Entity {
 
   set dexterity(value: i32) {
     this.set("dexterity", Value.fromI32(value));
+  }
+
+  get dexterityThreshold(): i32 {
+    let value = this.get("dexterityThreshold");
+    return value!.toI32();
+  }
+
+  set dexterityThreshold(value: i32) {
+    this.set("dexterityThreshold", Value.fromI32(value));
   }
 
   get name(): string {
@@ -462,6 +502,14 @@ export class MarketGoodsEntity extends Entity {
     this.set("index", Value.fromI32(0));
     this.set("acceptToken", Value.fromBytes(Bytes.empty()));
     this.set("priceInAcceptToken", Value.fromBigInt(BigInt.zero()));
+    this.set("charisma", Value.fromI32(0));
+    this.set("charismaThreshold", Value.fromI32(0));
+    this.set("vitality", Value.fromI32(0));
+    this.set("vitalityThreshold", Value.fromI32(0));
+    this.set("intellect", Value.fromI32(0));
+    this.set("intellectThreshold", Value.fromI32(0));
+    this.set("dexterity", Value.fromI32(0));
+    this.set("dexterityThreshold", Value.fromI32(0));
   }
 
   save(): void {
@@ -552,6 +600,78 @@ export class MarketGoodsEntity extends Entity {
 
   set priceInAcceptToken(value: BigInt) {
     this.set("priceInAcceptToken", Value.fromBigInt(value));
+  }
+
+  get charisma(): i32 {
+    let value = this.get("charisma");
+    return value!.toI32();
+  }
+
+  set charisma(value: i32) {
+    this.set("charisma", Value.fromI32(value));
+  }
+
+  get charismaThreshold(): i32 {
+    let value = this.get("charismaThreshold");
+    return value!.toI32();
+  }
+
+  set charismaThreshold(value: i32) {
+    this.set("charismaThreshold", Value.fromI32(value));
+  }
+
+  get vitality(): i32 {
+    let value = this.get("vitality");
+    return value!.toI32();
+  }
+
+  set vitality(value: i32) {
+    this.set("vitality", Value.fromI32(value));
+  }
+
+  get vitalityThreshold(): i32 {
+    let value = this.get("vitalityThreshold");
+    return value!.toI32();
+  }
+
+  set vitalityThreshold(value: i32) {
+    this.set("vitalityThreshold", Value.fromI32(value));
+  }
+
+  get intellect(): i32 {
+    let value = this.get("intellect");
+    return value!.toI32();
+  }
+
+  set intellect(value: i32) {
+    this.set("intellect", Value.fromI32(value));
+  }
+
+  get intellectThreshold(): i32 {
+    let value = this.get("intellectThreshold");
+    return value!.toI32();
+  }
+
+  set intellectThreshold(value: i32) {
+    this.set("intellectThreshold", Value.fromI32(value));
+  }
+
+  get dexterity(): i32 {
+    let value = this.get("dexterity");
+    return value!.toI32();
+  }
+
+  set dexterity(value: i32) {
+    this.set("dexterity", Value.fromI32(value));
+  }
+
+  get dexterityThreshold(): i32 {
+    let value = this.get("dexterityThreshold");
+    return value!.toI32();
+  }
+
+  set dexterityThreshold(value: i32) {
+    this.set("dexterityThreshold", Value.fromI32(value));
   }
 }
 

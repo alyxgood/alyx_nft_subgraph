@@ -6,9 +6,13 @@ type LYNKNFTEntity @entity {
   listIndex: Int!
   isStaking: Boolean!
   charisma: Int!
+  charismaThreshold: Int!
   vitality: Int!
+  vitalityThreshold: Int!
   intellect: Int!
+  intellectThreshold: Int!
   dexterity: Int!
+  dexterityThreshold: Int!
   name: String!
 }
 
@@ -54,6 +58,14 @@ type MarketGoodsEntity @entity {
   index: Int!
   acceptToken: Bytes!
   priceInAcceptToken: BigInt!
+  charisma: Int!
+  charismaThreshold: Int!
+  vitality: Int!
+  vitalityThreshold: Int!
+  intellect: Int!
+  intellectThreshold: Int!
+  dexterity: Int!
+  dexterityThreshold: Int!
 }
 
 type TradeLogEntity @entity {

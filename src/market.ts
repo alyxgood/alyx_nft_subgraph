@@ -43,6 +43,15 @@ export function handleList(event: ListEvent): void {
     entity.name = entityNFT.name
     entity.level = entityNFT.level
 
+    entity.charisma = entityNFT.charisma
+    entity.charismaThreshold = entityNFT.charismaThreshold
+    entity.vitality = entityNFT.vitality
+    entity.vitalityThreshold = entityNFT.vitalityThreshold
+    entity.intellect = entityNFT.intellect
+    entity.intellectThreshold = entityNFT.intellectThreshold
+    entity.dexterity = entityNFT.dexterity
+    entity.dexterityThreshold = entityNFT.dexterityThreshold
+
     entityNFT.isList = true
     entityNFT.listIndex = event.params.index.toI32()
     entityNFT.owner = event.params.seller
