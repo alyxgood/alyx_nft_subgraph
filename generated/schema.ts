@@ -767,3 +767,184 @@ export class TradeLogEntity extends Entity {
     this.set("tx", Value.fromBytes(value));
   }
 }
+
+export class AchievementRewardLogEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("account", Value.fromBytes(Bytes.empty()));
+    this.set("tokenId", Value.fromI32(0));
+    this.set("eventTime", Value.fromI32(0));
+    this.set("tx", Value.fromBytes(Bytes.empty()));
+    this.set("amount", Value.fromBigInt(BigInt.zero()));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(
+      id != null,
+      "Cannot save AchievementRewardLogEntity entity without an ID"
+    );
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type AchievementRewardLogEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("AchievementRewardLogEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): AchievementRewardLogEntity | null {
+    return changetype<AchievementRewardLogEntity | null>(
+      store.get("AchievementRewardLogEntity", id)
+    );
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get account(): Bytes {
+    let value = this.get("account");
+    return value!.toBytes();
+  }
+
+  set account(value: Bytes) {
+    this.set("account", Value.fromBytes(value));
+  }
+
+  get tokenId(): i32 {
+    let value = this.get("tokenId");
+    return value!.toI32();
+  }
+
+  set tokenId(value: i32) {
+    this.set("tokenId", Value.fromI32(value));
+  }
+
+  get eventTime(): i32 {
+    let value = this.get("eventTime");
+    return value!.toI32();
+  }
+
+  set eventTime(value: i32) {
+    this.set("eventTime", Value.fromI32(value));
+  }
+
+  get tx(): Bytes {
+    let value = this.get("tx");
+    return value!.toBytes();
+  }
+
+  set tx(value: Bytes) {
+    this.set("tx", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+}
+
+export class RewardLogEntity extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("rewardType", Value.fromString(""));
+    this.set("account", Value.fromBytes(Bytes.empty()));
+    this.set("invitee", Value.fromBytes(Bytes.empty()));
+    this.set("eventTime", Value.fromI32(0));
+    this.set("tx", Value.fromBytes(Bytes.empty()));
+    this.set("amount", Value.fromBigInt(BigInt.zero()));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save RewardLogEntity entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type RewardLogEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("RewardLogEntity", id.toString(), this);
+    }
+  }
+
+  static load(id: string): RewardLogEntity | null {
+    return changetype<RewardLogEntity | null>(store.get("RewardLogEntity", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get rewardType(): string {
+    let value = this.get("rewardType");
+    return value!.toString();
+  }
+
+  set rewardType(value: string) {
+    this.set("rewardType", Value.fromString(value));
+  }
+
+  get account(): Bytes {
+    let value = this.get("account");
+    return value!.toBytes();
+  }
+
+  set account(value: Bytes) {
+    this.set("account", Value.fromBytes(value));
+  }
+
+  get invitee(): Bytes {
+    let value = this.get("invitee");
+    return value!.toBytes();
+  }
+
+  set invitee(value: Bytes) {
+    this.set("invitee", Value.fromBytes(value));
+  }
+
+  get eventTime(): i32 {
+    let value = this.get("eventTime");
+    return value!.toI32();
+  }
+
+  set eventTime(value: i32) {
+    this.set("eventTime", Value.fromI32(value));
+  }
+
+  get tx(): Bytes {
+    let value = this.get("tx");
+    return value!.toBytes();
+  }
+
+  set tx(value: Bytes) {
+    this.set("tx", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+}

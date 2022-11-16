@@ -77,3 +77,22 @@ type TradeLogEntity @entity {
   seller: Bytes!
   tx: Bytes!
 }
+
+type AchievementRewardLogEntity @entity {
+  id: ID!
+  account: Bytes!
+  tokenId: Int!
+  eventTime: Int!
+  tx: Bytes!
+  amount: BigInt!
+}
+
+type RewardLogEntity @entity {
+  id: ID!
+  rewardType: String!
+  account: Bytes!
+  invitee: Bytes!
+  eventTime: Int!
+  tx: Bytes!
+  amount: BigInt!
+}

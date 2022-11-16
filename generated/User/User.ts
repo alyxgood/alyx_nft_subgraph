@@ -68,6 +68,84 @@ export class Upgraded__Params {
   }
 }
 
+export class ClaimAchievementReward extends ethereum.Event {
+  get params(): ClaimAchievementReward__Params {
+    return new ClaimAchievementReward__Params(this);
+  }
+}
+
+export class ClaimAchievementReward__Params {
+  _event: ClaimAchievementReward;
+
+  constructor(event: ClaimAchievementReward) {
+    this._event = event;
+  }
+
+  get account(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get nftId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
+export class CommunityRewardDistribute extends ethereum.Event {
+  get params(): CommunityRewardDistribute__Params {
+    return new CommunityRewardDistribute__Params(this);
+  }
+}
+
+export class CommunityRewardDistribute__Params {
+  _event: CommunityRewardDistribute;
+
+  constructor(event: CommunityRewardDistribute) {
+    this._event = event;
+  }
+
+  get account(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get invitee(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
+export class ContributionRewardDistribute extends ethereum.Event {
+  get params(): ContributionRewardDistribute__Params {
+    return new ContributionRewardDistribute__Params(this);
+  }
+}
+
+export class ContributionRewardDistribute__Params {
+  _event: ContributionRewardDistribute;
+
+  constructor(event: ContributionRewardDistribute) {
+    this._event = event;
+  }
+
+  get account(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get invitee(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
 export class Initialized extends ethereum.Event {
   get params(): Initialized__Params {
     return new Initialized__Params(this);
@@ -130,20 +208,29 @@ export class Register__Params {
   }
 }
 
-export class User__calcAchievementRewardResult {
-  value0: Array<boolean>;
-  value1: BigInt;
+export class SocialRewardDistribute extends ethereum.Event {
+  get params(): SocialRewardDistribute__Params {
+    return new SocialRewardDistribute__Params(this);
+  }
+}
 
-  constructor(value0: Array<boolean>, value1: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
+export class SocialRewardDistribute__Params {
+  _event: SocialRewardDistribute;
+
+  constructor(event: SocialRewardDistribute) {
+    this._event = event;
   }
 
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromBooleanArray(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    return map;
+  get account(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get invitee(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 }
 
@@ -280,47 +367,36 @@ export class User extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  calcAchievementReward(
-    _userAddr: Address,
-    _nftIds: Array<BigInt>
-  ): User__calcAchievementRewardResult {
+  calcAchievementReward(_userAddr: Address, _nftId: BigInt): BigInt {
     let result = super.call(
       "calcAchievementReward",
-      "calcAchievementReward(address,uint256[]):(bool[],uint256)",
+      "calcAchievementReward(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(_userAddr),
-        ethereum.Value.fromUnsignedBigIntArray(_nftIds)
+        ethereum.Value.fromUnsignedBigInt(_nftId)
       ]
     );
 
-    return new User__calcAchievementRewardResult(
-      result[0].toBooleanArray(),
-      result[1].toBigInt()
-    );
+    return result[0].toBigInt();
   }
 
   try_calcAchievementReward(
     _userAddr: Address,
-    _nftIds: Array<BigInt>
-  ): ethereum.CallResult<User__calcAchievementRewardResult> {
+    _nftId: BigInt
+  ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "calcAchievementReward",
-      "calcAchievementReward(address,uint256[]):(bool[],uint256)",
+      "calcAchievementReward(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(_userAddr),
-        ethereum.Value.fromUnsignedBigIntArray(_nftIds)
+        ethereum.Value.fromUnsignedBigInt(_nftId)
       ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new User__calcAchievementRewardResult(
-        value[0].toBooleanArray(),
-        value[1].toBigInt()
-      )
-    );
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   isValidUser(_userAddr: Address): boolean {
@@ -718,8 +794,8 @@ export class ClaimAchievementRewardCall__Inputs {
     this._call = call;
   }
 
-  get _nftIds(): Array<BigInt> {
-    return this._call.inputValues[0].value.toBigIntArray();
+  get _nftId(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
   }
 }
 

@@ -51,6 +51,14 @@ dataSources:
           handler: handleLevelUp
         - event: Register(indexed address,address)
           handler: handleRegister
+        - event: ClaimAchievementReward(indexed address,indexed uint256,uint256)
+          handler: handleClaimAchievementReward
+        - event: SocialRewardDistribute(indexed address,address,uint256)
+          handler: handleSocialRewardDistribute
+        - event: CommunityRewardDistribute(indexed address,address,uint256)
+          handler: handleCommunityRewardDistribute
+        - event: ContributionRewardDistribute(indexed address,address,uint256)
+          handler: handleContributionRewardDistribute
       file: ./src/user.ts
   - kind: ethereum
     name: DBContract

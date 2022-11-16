@@ -126,6 +126,81 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "ClaimAchievementReward",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "invitee",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CommunityRewardDistribute",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "invitee",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "ContributionRewardDistribute",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": false,
         "internalType": "uint8",
         "name": "version",
@@ -171,6 +246,31 @@
       }
     ],
     "name": "Register",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "invitee",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "SocialRewardDistribute",
     "type": "event"
   },
   {
@@ -227,18 +327,13 @@
         "type": "address"
       },
       {
-        "internalType": "uint256[]",
-        "name": "_nftIds",
-        "type": "uint256[]"
+        "internalType": "uint256",
+        "name": "_nftId",
+        "type": "uint256"
       }
     ],
     "name": "calcAchievementReward",
     "outputs": [
-      {
-        "internalType": "bool[]",
-        "name": "",
-        "type": "bool[]"
-      },
       {
         "internalType": "uint256",
         "name": "",
@@ -251,9 +346,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "_nftIds",
-        "type": "uint256[]"
+        "internalType": "uint256",
+        "name": "_nftId",
+        "type": "uint256"
       }
     ],
     "name": "claimAchievementReward",
