@@ -183,6 +183,8 @@ export function handleMint(event: Mint): void {
       logEntity.eventTime = event.block.timestamp.toI32()
       logEntity.num = 1
       logEntity.tx = event.transaction.hash
+      logEntity.payment = event.params.payment
+      logEntity.amount = event.params.amount
 
       logEntity.save()
     }

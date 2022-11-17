@@ -23,6 +23,8 @@ type MintLogEntity @entity {
   eventTime: Int!
   num: Int!
   tx: Bytes!
+  payment: Bytes!
+  amount: BigInt!
 }
 
 type RegisterLogEntity @entity {

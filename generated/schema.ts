@@ -194,6 +194,8 @@ export class MintLogEntity extends Entity {
     this.set("eventTime", Value.fromI32(0));
     this.set("num", Value.fromI32(0));
     this.set("tx", Value.fromBytes(Bytes.empty()));
+    this.set("payment", Value.fromBytes(Bytes.empty()));
+    this.set("amount", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -264,6 +266,24 @@ export class MintLogEntity extends Entity {
 
   set tx(value: Bytes) {
     this.set("tx", Value.fromBytes(value));
+  }
+
+  get payment(): Bytes {
+    let value = this.get("payment");
+    return value!.toBytes();
+  }
+
+  set payment(value: Bytes) {
+    this.set("payment", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 }
 

@@ -162,6 +162,14 @@ export class Mint__Params {
   get name(): string {
     return this._event.parameters[2].value.toString();
   }
+
+  get payment(): Address {
+    return this._event.parameters[3].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
 }
 
 export class Transfer extends ethereum.Event {
@@ -213,6 +221,23 @@ export class Upgrade__Params {
 
   get point(): BigInt {
     return this._event.parameters[2].value.toBigInt();
+  }
+}
+
+export class LYNKNFT__addedVAInfoOfResult {
+  value0: BigInt;
+  value1: BigInt;
+
+  constructor(value0: BigInt, value1: BigInt) {
+    this.value0 = value0;
+    this.value1 = value1;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
+    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
+    return map;
   }
 }
 
@@ -300,6 +325,36 @@ export class LYNKNFT extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  addedVAInfoOf(param0: BigInt): LYNKNFT__addedVAInfoOfResult {
+    let result = super.call(
+      "addedVAInfoOf",
+      "addedVAInfoOf(uint256):(uint128,uint128)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+
+    return new LYNKNFT__addedVAInfoOfResult(
+      result[0].toBigInt(),
+      result[1].toBigInt()
+    );
+  }
+
+  try_addedVAInfoOf(
+    param0: BigInt
+  ): ethereum.CallResult<LYNKNFT__addedVAInfoOfResult> {
+    let result = super.tryCall(
+      "addedVAInfoOf",
+      "addedVAInfoOf(uint256):(uint128,uint128)",
+      [ethereum.Value.fromUnsignedBigInt(param0)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      new LYNKNFT__addedVAInfoOfResult(value[0].toBigInt(), value[1].toBigInt())
+    );
   }
 
   balanceOf(owner: Address): BigInt {
@@ -842,32 +897,6 @@ export class __LYNKNFT_initCall__Outputs {
   _call: __LYNKNFT_initCall;
 
   constructor(call: __LYNKNFT_initCall) {
-    this._call = call;
-  }
-}
-
-export class __baseContract_initCall extends ethereum.Call {
-  get inputs(): __baseContract_initCall__Inputs {
-    return new __baseContract_initCall__Inputs(this);
-  }
-
-  get outputs(): __baseContract_initCall__Outputs {
-    return new __baseContract_initCall__Outputs(this);
-  }
-}
-
-export class __baseContract_initCall__Inputs {
-  _call: __baseContract_initCall;
-
-  constructor(call: __baseContract_initCall) {
-    this._call = call;
-  }
-}
-
-export class __baseContract_initCall__Outputs {
-  _call: __baseContract_initCall;
-
-  constructor(call: __baseContract_initCall) {
     this._call = call;
   }
 }

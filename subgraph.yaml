@@ -114,7 +114,7 @@ dataSources:
           handler: handleApprovalForAll
         - event: Initialized(uint8)
           handler: handleInitialized
-        - event: Mint(indexed uint256,uint256[],string)
+        - event: Mint(indexed uint256,uint256[],string,address,uint256)
           handler: handleMint
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
