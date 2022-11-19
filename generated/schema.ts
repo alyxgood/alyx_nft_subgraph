@@ -706,6 +706,8 @@ export class TradeLogEntity extends Entity {
     this.set("buyer", Value.fromBytes(Bytes.empty()));
     this.set("seller", Value.fromBytes(Bytes.empty()));
     this.set("tx", Value.fromBytes(Bytes.empty()));
+    this.set("payment", Value.fromBytes(Bytes.empty()));
+    this.set("priceInPayment", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -785,6 +787,24 @@ export class TradeLogEntity extends Entity {
 
   set tx(value: Bytes) {
     this.set("tx", Value.fromBytes(value));
+  }
+
+  get payment(): Bytes {
+    let value = this.get("payment");
+    return value!.toBytes();
+  }
+
+  set payment(value: Bytes) {
+    this.set("payment", Value.fromBytes(value));
+  }
+
+  get priceInPayment(): BigInt {
+    let value = this.get("priceInPayment");
+    return value!.toBigInt();
+  }
+
+  set priceInPayment(value: BigInt) {
+    this.set("priceInPayment", Value.fromBigInt(value));
   }
 }
 

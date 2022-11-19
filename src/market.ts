@@ -72,6 +72,8 @@ export function handleTake(event: TakeEvent): void {
     tradeEntity.name = entity.name
     tradeEntity.tx = event.transaction.hash
     tradeEntity.eventTime = event.block.timestamp.toI32()
+    tradeEntity.payment = entity.acceptToken
+    tradeEntity.priceInPayment = entity.priceInAcceptToken
     tradeEntity.save()
 
     entity.onSale = false

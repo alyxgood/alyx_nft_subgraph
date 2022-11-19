@@ -78,6 +78,8 @@ type TradeLogEntity @entity {
   buyer: Bytes!
   seller: Bytes!
   tx: Bytes!
+  payment: Bytes!
+  priceInPayment: BigInt!
 }
 
 type AchievementRewardLogEntity @entity {
