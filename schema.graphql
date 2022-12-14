@@ -1,5 +1,6 @@
 type LYNKNFTEntity @entity {
   id: ID!
+  creator: Bytes! # address
   owner: Bytes! # address
   level: Int!
   isList: Boolean!

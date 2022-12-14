@@ -181,6 +181,7 @@ export function handleMint(event: Mint): void {
     entity.dexterity = event.params.nftInfo[3].toI32()
     entity.dexterityThreshold = ATTRIBUTE_DX[0]
     entity.name = event.params.name
+    entity.creator = event.transaction.from
 
     entity.save()
 
