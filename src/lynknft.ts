@@ -168,7 +168,12 @@ export function handleMint(event: Mint): void {
   let entity = LYNKNFTEntity.load(event.params.tokenId.toString())
   if (entity) {
     entity.charisma = event.params.nftInfo[0].toI32()
-    entity.charismaThreshold = ATTRIBUTE_CA[0]
+    for (let index: i32 = ATTRIBUTE_CA.length - 1; index >= 0; index--) {
+      if (entity.charisma >= ATTRIBUTE_CA[index]) {
+        entity.charismaThreshold = index == ATTRIBUTE_CA.length - 1 ? ATTRIBUTE_CA[ATTRIBUTE_CA.length - 1] : ATTRIBUTE_CA[index + 1]
+        break
+      }
+    }
     entity.vitality = event.params.nftInfo[1].toI32()
     entity.vitalityThreshold = ATTRIBUTE_VA[0]
     entity.intellect = event.params.nftInfo[2].toI32()
