@@ -182,6 +182,7 @@ export function handleMint(event: Mint): void {
     entity.dexterityThreshold = ATTRIBUTE_DX[0]
     entity.name = event.params.name
     entity.creator = event.transaction.from
+    entity.createdTime = event.block.timestamp.toI32()
 
     entity.save()
 

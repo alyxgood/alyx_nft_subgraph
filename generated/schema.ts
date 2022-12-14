@@ -17,6 +17,7 @@ export class LYNKNFTEntity extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("creator", Value.fromBytes(Bytes.empty()));
+    this.set("createdTime", Value.fromI32(0));
     this.set("owner", Value.fromBytes(Bytes.empty()));
     this.set("level", Value.fromI32(0));
     this.set("isList", Value.fromBoolean(false));
@@ -65,6 +66,15 @@ export class LYNKNFTEntity extends Entity {
 
   set creator(value: Bytes) {
     this.set("creator", Value.fromBytes(value));
+  }
+
+  get createdTime(): i32 {
+    let value = this.get("createdTime");
+    return value!.toI32();
+  }
+
+  set createdTime(value: i32) {
+    this.set("createdTime", Value.fromI32(value));
   }
 
   get owner(): Bytes {
