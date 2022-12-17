@@ -16,6 +16,9 @@ type LYNKNFTEntity @entity {
   dexterity: Int!
   dexterityThreshold: Int!
   name: String!
+  sex: Int!
+  grade: Int!
+  factions: Int!
 }
 
 type MintLogEntity @entity {

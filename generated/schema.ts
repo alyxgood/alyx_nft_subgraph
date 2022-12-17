@@ -32,6 +32,9 @@ export class LYNKNFTEntity extends Entity {
     this.set("dexterity", Value.fromI32(0));
     this.set("dexterityThreshold", Value.fromI32(0));
     this.set("name", Value.fromString(""));
+    this.set("sex", Value.fromI32(0));
+    this.set("grade", Value.fromI32(0));
+    this.set("factions", Value.fromI32(0));
   }
 
   save(): void {
@@ -201,6 +204,33 @@ export class LYNKNFTEntity extends Entity {
 
   set name(value: string) {
     this.set("name", Value.fromString(value));
+  }
+
+  get sex(): i32 {
+    let value = this.get("sex");
+    return value!.toI32();
+  }
+
+  set sex(value: i32) {
+    this.set("sex", Value.fromI32(value));
+  }
+
+  get grade(): i32 {
+    let value = this.get("grade");
+    return value!.toI32();
+  }
+
+  set grade(value: i32) {
+    this.set("grade", Value.fromI32(value));
+  }
+
+  get factions(): i32 {
+    let value = this.get("factions");
+    return value!.toI32();
+  }
+
+  set factions(value: i32) {
+    this.set("factions", Value.fromI32(value));
   }
 }
 

@@ -184,6 +184,10 @@ export function handleMint(event: Mint): void {
     entity.creator = event.transaction.from
     entity.createdTime = event.block.timestamp.toI32()
 
+    entity.sex = parseSex(event.params.tokenId.toI32())
+    entity.grade = parseGrade(event.params.tokenId.toI32())
+    entity.factions = parseFactions(event.params.tokenId.toI32())
+
     entity.save()
 
     let logEntity = MintLogEntity.load(event.params.tokenId.toString())
@@ -200,4 +204,45 @@ export function handleMint(event: Mint): void {
       logEntity.save()
     }
   }
+}
+
+function parseGrade(tokenId: i32) {
+  if (tokenId >= 300_000) return 3;
+  if (tokenId >= 200_000) return 2;
+  if (tokenId >= 100_000) return 1;
+  return 0;
+}
+
+/**
+ * parse the factions by token id
+ * @param tokenId 
+ * @returns 
+ */
+function parseFactions(tokenId: i32) {
+  if (tokenId < 100_000) return 0;
+
+  const tailTokenId = tokenId % 100_000
+  if (tailTokenId >= 60_000) return 4;
+  if (tailTokenId >= 40_000) return 3;
+  if (tailTokenId >= 20_000) return 2;
+  return 1;
+}
+
+/**
+ * parse the sex by token id
+ * @param tokenId 
+ * @returns 1: boy; 2:girl; 0: early bird
+ */
+function parseSex(tokenId: i32) {
+  if (tokenId < 100_000) return 0;
+
+  const tailTokenId = tokenId % 100_000
+  if (tailTokenId >= 70_000) return 1;
+  if (tailTokenId >= 60_000) return 2;
+  if (tailTokenId >= 50_000) return 1;
+  if (tailTokenId >= 40_000) return 2;
+  if (tailTokenId >= 30_000) return 1;
+  if (tailTokenId >= 20_000) return 2;
+  if (tailTokenId >= 10_000) return 1;
+  return 2;
 }
