@@ -6,9 +6,9 @@ dataSources:
     name: Market
     network: ALYX
     source:
-      address: "0x4A6634e6218B4b27baEF6A0c68cF077C4b92121A"
+      address: "0xb313277c8cA1135bD9843BeD1d0605696552315C"
       abi: Market
-      startBlock: 170607
+      startBlock: 1515168
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -33,9 +33,9 @@ dataSources:
     name: User
     network: ALYX
     source:
-      address: "0x7A6Ed86545d8fAFEfF25fF22470dd0cBb8DF7c63"
+      address: "0x5C5539912Eb0a8830F62908b4087e6f3C2cD7aEC"
       abi: User
-      startBlock: 170595
+      startBlock: 1515155
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -64,9 +64,9 @@ dataSources:
     name: DBContract
     network: ALYX
     source:
-      address: "0x4023A2776c1CE7d174Ee3BDfa639C74faD47393F"
+      address: "0x49BB37B72Bc6Be7c36337FF787ab53E8196639C1"
       abi: DBContract
-      startBlock: 170703
+      startBlock: 1515118
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -87,9 +87,9 @@ dataSources:
     name: LYNKNFT
     network: ALYX
     source:
-      address: "0x779927B8c02d5cB6C90C1EBD2F714EF4092C8b0e"
+      address: "0x9E25380BecB44f994974317Af5A777ACD46b0aD9"
       abi: LYNKNFT
-      startBlock: 170575
+      startBlock: 1515137
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -125,9 +125,9 @@ dataSources:
     name: Staking
     network: ALYX
     source:
-      address: "0x6E4e03E0AE4E7d38A8581A0e91242170b23639e7"
+      address: "0x1Ce57Bd0B1fBB27940A9ACe67134B1f456036149"
       abi: Staking
-      startBlock: 170601
+      startBlock: 1515162
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
