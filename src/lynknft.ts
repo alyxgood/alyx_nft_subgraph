@@ -206,7 +206,7 @@ export function handleMint(event: Mint): void {
   }
 }
 
-function parseGrade(tokenId: i32) {
+function parseGrade(tokenId: i32) :i32 {
   if (tokenId >= 300_000) return 3;
   if (tokenId >= 200_000) return 2;
   if (tokenId >= 100_000) return 1;
@@ -218,7 +218,7 @@ function parseGrade(tokenId: i32) {
  * @param tokenId 
  * @returns 
  */
-function parseFactions(tokenId: i32) {
+function parseFactions(tokenId: i32) :i32 {
   if (tokenId < 100_000) return 0;
 
   const tailTokenId = tokenId % 100_000
@@ -233,7 +233,7 @@ function parseFactions(tokenId: i32) {
  * @param tokenId 
  * @returns 1: boy; 2:girl; 0: early bird
  */
-function parseSex(tokenId: i32) {
+function parseSex(tokenId: i32) :i32 {
   if (tokenId < 100_000) return 0;
 
   const tailTokenId = tokenId % 100_000
