@@ -580,6 +580,9 @@ export class MarketGoodsEntity extends Entity {
     this.set("intellectThreshold", Value.fromI32(0));
     this.set("dexterity", Value.fromI32(0));
     this.set("dexterityThreshold", Value.fromI32(0));
+    this.set("sex", Value.fromI32(0));
+    this.set("grade", Value.fromI32(0));
+    this.set("factions", Value.fromI32(0));
   }
 
   save(): void {
@@ -742,6 +745,33 @@ export class MarketGoodsEntity extends Entity {
 
   set dexterityThreshold(value: i32) {
     this.set("dexterityThreshold", Value.fromI32(value));
+  }
+
+  get sex(): i32 {
+    let value = this.get("sex");
+    return value!.toI32();
+  }
+
+  set sex(value: i32) {
+    this.set("sex", Value.fromI32(value));
+  }
+
+  get grade(): i32 {
+    let value = this.get("grade");
+    return value!.toI32();
+  }
+
+  set grade(value: i32) {
+    this.set("grade", Value.fromI32(value));
+  }
+
+  get factions(): i32 {
+    let value = this.get("factions");
+    return value!.toI32();
+  }
+
+  set factions(value: i32) {
+    this.set("factions", Value.fromI32(value));
   }
 }
 

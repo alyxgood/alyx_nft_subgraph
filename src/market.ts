@@ -51,6 +51,10 @@ export function handleList(event: ListEvent): void {
     entity.intellectThreshold = entityNFT.intellectThreshold
     entity.dexterity = entityNFT.dexterity
     entity.dexterityThreshold = entityNFT.dexterityThreshold
+    
+    entity.sex = entityNFT.sex
+    entity.grade = entityNFT.grade
+    entity.factions = entityNFT.factions
 
     entityNFT.isList = true
     entityNFT.listIndex = event.params.index.toI32()

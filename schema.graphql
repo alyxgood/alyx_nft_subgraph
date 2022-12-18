@@ -73,6 +73,9 @@ type MarketGoodsEntity @entity {
   intellectThreshold: Int!
   dexterity: Int!
   dexterityThreshold: Int!
+  sex: Int!
+  grade: Int!
+  factions: Int!
 }
 
 type TradeLogEntity @entity {
