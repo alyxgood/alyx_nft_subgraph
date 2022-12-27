@@ -96,11 +96,13 @@ export function handleTransfer(event: Transfer): void {
 
   if (event.params.from.toHex() !== Address.zero().toHex()) {
     let fromEntity = HolderOverview.load(event.params.from.toHex())
-    fromEntity!.num -= 1
-    fromEntity!.save()
-
-    if (fromEntity!.num === 0) {
-      marketEntity.holdersNum -= 1
+    if (fromEntity) {
+      fromEntity.num -= 1
+      fromEntity.save()
+  
+      if (fromEntity.num === 0) {
+        marketEntity.holdersNum -= 1
+      }
     }
   }
 
@@ -111,7 +113,10 @@ export function handleTransfer(event: Transfer): void {
   toEntity.num += 1
   toEntity.save()
 
-  marketEntity.holdersNum += 1
+  if (toEntity.num === 1) {
+    marketEntity.holdersNum += 1
+  }
+
   marketEntity.save()
 }
 

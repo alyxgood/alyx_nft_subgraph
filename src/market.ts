@@ -3,13 +3,28 @@ import {
   List as ListEvent,
   Take as TakeEvent
 } from "../generated/Market/Market"
-import {LYNKNFTEntity, MarketGoodsEntity, MarketOverview, TradeLogEntity} from "../generated/schema";
+import {HolderOverview, LYNKNFTEntity, MarketGoodsEntity, MarketOverview, TradeLogEntity} from "../generated/schema";
 import {Address, BigInt} from "@graphprotocol/graph-ts";
-import {MARKET_OVERVIEW_ENTITY_ID} from "../constants/constants";
+import { MARKET_OVERVIEW_ENTITY_ID } from "../constants/constants";
 
 export function handleCancel(event: CancelEvent): void {
   let entity = MarketGoodsEntity.load(event.params.tokenId.toString())
   if (entity) {
+    let fromEntity = HolderOverview.load(entity.seller.toHex())
+    if (fromEntity) {
+      fromEntity.num -= 1
+      fromEntity.save()
+
+      if (fromEntity.num === 0) {
+        let marketEntity = MarketOverview.load(MARKET_OVERVIEW_ENTITY_ID)
+        if (!marketEntity) {
+          marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
+        }
+        marketEntity.holdersNum -= 1
+        marketEntity.save()
+      }
+    }
+
     entity.onSale = false
     entity.seller = Address.zero()
     entity.index = 0
@@ -102,6 +117,13 @@ export function handleTake(event: TakeEvent): void {
     entity.priceInAcceptToken = BigInt.zero()
 
     entity.save()
+
+    let marketEntity = MarketOverview.load(MARKET_OVERVIEW_ENTITY_ID)
+    if (!marketEntity) {
+      marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
+    }
+    marketEntity.tradeAmount = marketEntity.tradeAmount.plus(entity.priceInAcceptToken)
+    marketEntity.save()
   }
 
   let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
