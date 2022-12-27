@@ -108,3 +108,16 @@ type RewardLogEntity @entity {
   tx: Bytes!
   amount: BigInt!
 }
+
+type MarketOverview @entity {
+  id: ID!
+  tradeAmount: BigInt!
+  highestPrice: BigInt!
+  lowestPrice: BigInt!
+  holdersNum: Int!
+}
+
+type HolderOverview @entity {
+  id: ID!
+  num: Int! # uint8
+}

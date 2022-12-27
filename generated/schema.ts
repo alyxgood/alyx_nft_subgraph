@@ -1068,3 +1068,119 @@ export class RewardLogEntity extends Entity {
     this.set("amount", Value.fromBigInt(value));
   }
 }
+
+export class MarketOverview extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("tradeAmount", Value.fromBigInt(BigInt.zero()));
+    this.set("highestPrice", Value.fromBigInt(BigInt.zero()));
+    this.set("lowestPrice", Value.fromBigInt(BigInt.zero()));
+    this.set("holdersNum", Value.fromI32(0));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save MarketOverview entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type MarketOverview must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("MarketOverview", id.toString(), this);
+    }
+  }
+
+  static load(id: string): MarketOverview | null {
+    return changetype<MarketOverview | null>(store.get("MarketOverview", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tradeAmount(): BigInt {
+    let value = this.get("tradeAmount");
+    return value!.toBigInt();
+  }
+
+  set tradeAmount(value: BigInt) {
+    this.set("tradeAmount", Value.fromBigInt(value));
+  }
+
+  get highestPrice(): BigInt {
+    let value = this.get("highestPrice");
+    return value!.toBigInt();
+  }
+
+  set highestPrice(value: BigInt) {
+    this.set("highestPrice", Value.fromBigInt(value));
+  }
+
+  get lowestPrice(): BigInt {
+    let value = this.get("lowestPrice");
+    return value!.toBigInt();
+  }
+
+  set lowestPrice(value: BigInt) {
+    this.set("lowestPrice", Value.fromBigInt(value));
+  }
+
+  get holdersNum(): i32 {
+    let value = this.get("holdersNum");
+    return value!.toI32();
+  }
+
+  set holdersNum(value: i32) {
+    this.set("holdersNum", Value.fromI32(value));
+  }
+}
+
+export class HolderOverview extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("num", Value.fromI32(0));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save HolderOverview entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type HolderOverview must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("HolderOverview", id.toString(), this);
+    }
+  }
+
+  static load(id: string): HolderOverview | null {
+    return changetype<HolderOverview | null>(store.get("HolderOverview", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get num(): i32 {
+    let value = this.get("num");
+    return value!.toI32();
+  }
+
+  set num(value: i32) {
+    this.set("num", Value.fromI32(value));
+  }
+}

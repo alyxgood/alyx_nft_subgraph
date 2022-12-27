@@ -3,8 +3,9 @@ import {
   List as ListEvent,
   Take as TakeEvent
 } from "../generated/Market/Market"
-import {LYNKNFTEntity, MarketGoodsEntity, TradeLogEntity} from "../generated/schema";
+import {LYNKNFTEntity, MarketGoodsEntity, MarketOverview, TradeLogEntity} from "../generated/schema";
 import {Address, BigInt} from "@graphprotocol/graph-ts";
+import {MARKET_OVERVIEW_ENTITY_ID} from "../constants/constants";
 
 export function handleCancel(event: CancelEvent): void {
   let entity = MarketGoodsEntity.load(event.params.tokenId.toString())
@@ -64,6 +65,20 @@ export function handleList(event: ListEvent): void {
   }
 
   entity.save()
+
+  let marketEntity = MarketOverview.load(MARKET_OVERVIEW_ENTITY_ID)
+  if (!marketEntity) {
+    marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
+  }
+
+  marketEntity.tradeAmount = marketEntity.tradeAmount.plus(event.params.priceInAcceptToken)
+  if (marketEntity.highestPrice.equals(BigInt.zero()) || event.params.priceInAcceptToken.gt(marketEntity.highestPrice)) {
+    marketEntity.highestPrice = event.params.priceInAcceptToken
+  }
+  if (marketEntity.lowestPrice.equals(BigInt.zero()) || event.params.priceInAcceptToken.lt(marketEntity.lowestPrice)) {
+    marketEntity.lowestPrice = event.params.priceInAcceptToken
+  }
+  marketEntity.save()
 }
 
 export function handleTake(event: TakeEvent): void {

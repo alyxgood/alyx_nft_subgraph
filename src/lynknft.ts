@@ -7,8 +7,8 @@ import {
   Upgrade,
   Mint
 } from "../generated/LYNKNFT/LYNKNFT"
-import {LYNKNFTEntity, MintLogEntity} from "../generated/schema"
-import {ATTRIBUTE_CA, ATTRIBUTE_DX, ATTRIBUTE_IN, ATTRIBUTE_VA} from "../constants/constants";
+import {HolderOverview, LYNKNFTEntity, MarketOverview, MintLogEntity} from "../generated/schema"
+import {ATTRIBUTE_CA, ATTRIBUTE_DX, ATTRIBUTE_IN, ATTRIBUTE_VA, MARKET_OVERVIEW_ENTITY_ID} from "../constants/constants";
 
 export function handleApproval(event: Approval): void {
   // // Entities can be loaded from the store using a string ID; this ID
@@ -88,6 +88,31 @@ export function handleTransfer(event: Transfer): void {
   entity.owner = event.params.to
 
   entity.save()
+
+  let marketEntity = MarketOverview.load(MARKET_OVERVIEW_ENTITY_ID)
+  if (!marketEntity) {
+    marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
+  }
+
+  if (event.params.from.toHex() !== Address.zero().toHex()) {
+    let fromEntity = HolderOverview.load(event.params.from.toHex())
+    fromEntity!.num -= 1
+    fromEntity!.save()
+
+    if (fromEntity!.num === 0) {
+      marketEntity.holdersNum -= 1
+    }
+  }
+
+  let toEntity = HolderOverview.load(event.params.to.toHex())
+  if (!toEntity) {
+    toEntity = new HolderOverview(event.params.to.toHex())
+  }
+  toEntity.num += 1
+  toEntity.save()
+
+  marketEntity.holdersNum += 1
+  marketEntity.save()
 }
 
 export function handleUpgrade(event: Upgrade): void {
