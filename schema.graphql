@@ -1,3 +1,11 @@
+type _Schema_
+  @fulltext(
+    name: "tradeSearch"
+    language: en
+    algorithm: rank
+    include: [{ entity: "TradeLogEntity", fields: [{ name: "buyer" }, { name: "seller" }] }]
+  )
+
 type LYNKNFTEntity @entity {
   id: ID!
   creator: Bytes! # address
