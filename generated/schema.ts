@@ -783,8 +783,8 @@ export class TradeLogEntity extends Entity {
     this.set("tokenId", Value.fromI32(0));
     this.set("name", Value.fromString(""));
     this.set("eventTime", Value.fromI32(0));
-    this.set("buyer", Value.fromBytes(Bytes.empty()));
-    this.set("seller", Value.fromBytes(Bytes.empty()));
+    this.set("buyer", Value.fromString(""));
+    this.set("seller", Value.fromString(""));
     this.set("tx", Value.fromBytes(Bytes.empty()));
     this.set("payment", Value.fromBytes(Bytes.empty()));
     this.set("priceInPayment", Value.fromBigInt(BigInt.zero()));
@@ -842,22 +842,22 @@ export class TradeLogEntity extends Entity {
     this.set("eventTime", Value.fromI32(value));
   }
 
-  get buyer(): Bytes {
+  get buyer(): string {
     let value = this.get("buyer");
-    return value!.toBytes();
+    return value!.toString();
   }
 
-  set buyer(value: Bytes) {
-    this.set("buyer", Value.fromBytes(value));
+  set buyer(value: string) {
+    this.set("buyer", Value.fromString(value));
   }
 
-  get seller(): Bytes {
+  get seller(): string {
     let value = this.get("seller");
-    return value!.toBytes();
+    return value!.toString();
   }
 
-  set seller(value: Bytes) {
-    this.set("seller", Value.fromBytes(value));
+  set seller(value: string) {
+    this.set("seller", Value.fromString(value));
   }
 
   get tx(): Bytes {
