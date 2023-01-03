@@ -3,7 +3,7 @@ type _Schema_
     name: "tradeSearch"
     language: en
     algorithm: rank
-    include: [{ entity: "TradeLogEntity", fields: [{ name: "buyer" }, { name: "seller" }] }]
+    include: [{ entity: "TradeLogEntity", fields: [{ name: "buyerStr" }, { name: "sellerStr" }] }]
   )
 
 type LYNKNFTEntity @entity {
@@ -91,8 +91,10 @@ type TradeLogEntity @entity {
   tokenId: Int!
   name: String!
   eventTime: Int!
-  buyer: String!
-  seller: String!
+  buyer: Bytes!
+  seller: Bytes!
+  buyerStr: String!
+  sellerStr: String!
   tx: Bytes!
   payment: Bytes!
   priceInPayment: BigInt!

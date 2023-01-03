@@ -100,8 +100,10 @@ export function handleTake(event: TakeEvent): void {
   let entity = MarketGoodsEntity.load(event.params.tokenId.toString())
   if (entity) {
     const tradeEntity = new TradeLogEntity(`${event.transaction.hash.toHex()}-${event.logIndex.toI32()}`)
-    tradeEntity.buyer = event.params.buyer.toHexString()
-    tradeEntity.seller = entity.seller.toHexString()
+    tradeEntity.buyer = event.params.buyer
+    tradeEntity.seller = entity.seller
+    tradeEntity.buyerStr = event.params.buyer.toHexString()
+    tradeEntity.sellerStr = entity.seller.toHexString()
     tradeEntity.tokenId = event.params.tokenId.toI32()
     tradeEntity.name = entity.name
     tradeEntity.tx = event.transaction.hash

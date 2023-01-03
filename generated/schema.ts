@@ -783,8 +783,10 @@ export class TradeLogEntity extends Entity {
     this.set("tokenId", Value.fromI32(0));
     this.set("name", Value.fromString(""));
     this.set("eventTime", Value.fromI32(0));
-    this.set("buyer", Value.fromString(""));
-    this.set("seller", Value.fromString(""));
+    this.set("buyer", Value.fromBytes(Bytes.empty()));
+    this.set("seller", Value.fromBytes(Bytes.empty()));
+    this.set("buyerStr", Value.fromString(""));
+    this.set("sellerStr", Value.fromString(""));
     this.set("tx", Value.fromBytes(Bytes.empty()));
     this.set("payment", Value.fromBytes(Bytes.empty()));
     this.set("priceInPayment", Value.fromBigInt(BigInt.zero()));
@@ -842,22 +844,40 @@ export class TradeLogEntity extends Entity {
     this.set("eventTime", Value.fromI32(value));
   }
 
-  get buyer(): string {
+  get buyer(): Bytes {
     let value = this.get("buyer");
-    return value!.toString();
+    return value!.toBytes();
   }
 
-  set buyer(value: string) {
-    this.set("buyer", Value.fromString(value));
+  set buyer(value: Bytes) {
+    this.set("buyer", Value.fromBytes(value));
   }
 
-  get seller(): string {
+  get seller(): Bytes {
     let value = this.get("seller");
+    return value!.toBytes();
+  }
+
+  set seller(value: Bytes) {
+    this.set("seller", Value.fromBytes(value));
+  }
+
+  get buyerStr(): string {
+    let value = this.get("buyerStr");
     return value!.toString();
   }
 
-  set seller(value: string) {
-    this.set("seller", Value.fromString(value));
+  set buyerStr(value: string) {
+    this.set("buyerStr", Value.fromString(value));
+  }
+
+  get sellerStr(): string {
+    let value = this.get("sellerStr");
+    return value!.toString();
+  }
+
+  set sellerStr(value: string) {
+    this.set("sellerStr", Value.fromString(value));
   }
 
   get tx(): Bytes {
