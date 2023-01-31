@@ -110,7 +110,7 @@ export function handleTake(event: TakeEvent): void {
     if (!marketEntity) {
       marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
     }
-    marketEntity.tradeAmount = marketEntity.tradeAmount.plus(entity.priceInAcceptToken)
+    marketEntity.tradeAmount = marketEntity.tradeAmount.plus(tradeEntity.priceInPayment)
 
     if (marketEntity.highestPrice.equals(BigInt.zero()) || tradeEntity.priceInPayment.gt(marketEntity.highestPrice)) {
       marketEntity.highestPrice = tradeEntity.priceInPayment
