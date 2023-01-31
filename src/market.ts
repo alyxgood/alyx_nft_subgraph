@@ -80,20 +80,6 @@ export function handleList(event: ListEvent): void {
   }
 
   entity.save()
-
-  let marketEntity = MarketOverview.load(MARKET_OVERVIEW_ENTITY_ID)
-  if (!marketEntity) {
-    marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
-  }
-
-  marketEntity.tradeAmount = marketEntity.tradeAmount.plus(event.params.priceInAcceptToken)
-  if (marketEntity.highestPrice.equals(BigInt.zero()) || event.params.priceInAcceptToken.gt(marketEntity.highestPrice)) {
-    marketEntity.highestPrice = event.params.priceInAcceptToken
-  }
-  if (marketEntity.lowestPrice.equals(BigInt.zero()) || event.params.priceInAcceptToken.lt(marketEntity.lowestPrice)) {
-    marketEntity.lowestPrice = event.params.priceInAcceptToken
-  }
-  marketEntity.save()
 }
 
 export function handleTake(event: TakeEvent): void {
@@ -125,6 +111,13 @@ export function handleTake(event: TakeEvent): void {
       marketEntity = new MarketOverview(MARKET_OVERVIEW_ENTITY_ID)
     }
     marketEntity.tradeAmount = marketEntity.tradeAmount.plus(entity.priceInAcceptToken)
+
+    if (marketEntity.highestPrice.equals(BigInt.zero()) || tradeEntity.priceInPayment.gt(marketEntity.highestPrice)) {
+      marketEntity.highestPrice = tradeEntity.priceInPayment
+    }
+    if (marketEntity.lowestPrice.equals(BigInt.zero()) || tradeEntity.priceInPayment.lt(marketEntity.lowestPrice)) {
+      marketEntity.lowestPrice = tradeEntity.priceInPayment
+    }
     marketEntity.save()
   }
 
