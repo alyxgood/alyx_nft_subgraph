@@ -119,13 +119,14 @@ export function handleTake(event: TakeEvent): void {
       marketEntity.lowestPrice = tradeEntity.priceInPayment
     }
     marketEntity.save()
-  }
 
-  let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
-  if (entityNFT) {
-    entityNFT.isList = false
-    entityNFT.listIndex = 0
+    let entityNFT = LYNKNFTEntity.load(event.params.tokenId.toString())
+    if (entityNFT) {
+      entityNFT.isList = false
+      entityNFT.listIndex = 0
+      entityNFT.lastTradePrice = tradeEntity.priceInPayment
 
-    entityNFT.save()
+      entityNFT.save()
+    }
   }
 }

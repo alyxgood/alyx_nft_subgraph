@@ -27,6 +27,7 @@ type LYNKNFTEntity @entity {
   sex: Int!
   grade: Int!
   factions: Int!
+  lastTradePrice: BigInt!
 }
 
 type MintLogEntity @entity {

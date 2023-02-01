@@ -35,6 +35,7 @@ export class LYNKNFTEntity extends Entity {
     this.set("sex", Value.fromI32(0));
     this.set("grade", Value.fromI32(0));
     this.set("factions", Value.fromI32(0));
+    this.set("lastTradePrice", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -231,6 +232,15 @@ export class LYNKNFTEntity extends Entity {
 
   set factions(value: i32) {
     this.set("factions", Value.fromI32(value));
+  }
+
+  get lastTradePrice(): BigInt {
+    let value = this.get("lastTradePrice");
+    return value!.toBigInt();
+  }
+
+  set lastTradePrice(value: BigInt) {
+    this.set("lastTradePrice", Value.fromBigInt(value));
   }
 }
 
