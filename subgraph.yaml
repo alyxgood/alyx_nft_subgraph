@@ -7,11 +7,11 @@ features:
 dataSources:
   - kind: ethereum
     name: Market
-    network: ALYX
+    network: sepolia
     source:
-      address: "0xb313277c8cA1135bD9843BeD1d0605696552315C"
+      address: "0x26665D2A687f2f37ce0324EF736c4778058037F1"
       abi: Market
-      startBlock: 1515168
+      startBlock: 2823826
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -34,11 +34,11 @@ dataSources:
       file: ./src/market.ts
   - kind: ethereum
     name: User
-    network: ALYX
+    network: sepolia
     source:
-      address: "0x5C5539912Eb0a8830F62908b4087e6f3C2cD7aEC"
+      address: "0xDBd2Aa94cf7608c4f4dB879F1FEAb13fdde80A88"
       abi: User
-      startBlock: 1515155
+      startBlock: 2823821
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -65,11 +65,11 @@ dataSources:
       file: ./src/user.ts
   - kind: ethereum
     name: DBContract
-    network: ALYX
+    network: sepolia
     source:
-      address: "0x49BB37B72Bc6Be7c36337FF787ab53E8196639C1"
+      address: "0x5f9BBb7bBFC56072ae37872eBB077E4a6cA8A1b7"
       abi: DBContract
-      startBlock: 1515118
+      startBlock: 2823794
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -88,11 +88,11 @@ dataSources:
       file: ./src/db-contract.ts
   - kind: ethereum
     name: LYNKNFT
-    network: ALYX
+    network: sepolia
     source:
-      address: "0x9E25380BecB44f994974317Af5A777ACD46b0aD9"
+      address: "0xc0330C26c3C2A77ba9E191568C5179F34aA74459"
       abi: LYNKNFT
-      startBlock: 1515137
+      startBlock: 2823810
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
